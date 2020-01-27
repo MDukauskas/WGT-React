@@ -1,0 +1,23 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.direction {
+  display: flex;
+  flex-direction: row; 
+}
+
+.loading {
+    animation: loading-spin infinite 2s linear;
+  }
+
+@keyframes loading-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
