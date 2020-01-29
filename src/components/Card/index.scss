@@ -1,0 +1,27 @@
+.card {
+    border: 1px solid #E6E6E6;
+    border-top:1px solid #FF6800;
+    margin: 10px 10px;
+  
+    .card_header {
+      border-bottom: 1px solid #E6E6E6;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      padding: 0 30px;
+      font-size: 20px;
+    }
+  
+    .card_body {
+      padding: 30px 30px;
+      p {
+        color: #1A1A1A;
+        font-size: 18px;
+        padding: 10px 0;
+      }
+      span {
+        color: #666666;
+        font-size: 16px;
+      }
+    }
+  }

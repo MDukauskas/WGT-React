@@ -21,3 +21,58 @@
     transform: rotate(360deg);
   }
 }
+
+.column {
+  width: 48%;
+}
+
+.App {
+  display: flex;
+  flex-direction: row;
+}
+
+.textInput {
+  margin: 30px;
+
+  input {
+    width: 100%;
+    border:none;
+    border-bottom: 1px solid #E6E6E6;
+    color: #666666;
+    font-size: 16px;
+    padding: 15px 10px 10px 0;
+  }
+
+  span {
+    color: #B3B3B3;
+    font-size: 12px;
+    font-weight: 300;
+  }
+
+  .innerInput {
+    input {
+      border-bottom:1px solid #FF6800;
+    }
+    .red {
+      color: red;
+    }
+  }
+}
+
+
+
+.selectInput {
+  margin: 30px;
+  select {
+    width: 100%;
+    border:none;
+    border-bottom: 1px solid #E6E6E6;
+    font-size: 16px;
+  }
+
+  .innerInput {
+    .red {
+      color: red;
+    }
+  }
+}
