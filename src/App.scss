@@ -9,19 +9,6 @@
   flex-direction: row; 
 }
 
-.loading {
-    animation: loading-spin infinite 2s linear;
-  }
-
-@keyframes loading-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
 .column {
   width: 48%;
 }
@@ -31,48 +18,30 @@
   flex-direction: row;
 }
 
-.textInput {
-  margin: 30px;
-
-  input {
-    width: 100%;
-    border:none;
-    border-bottom: 1px solid #E6E6E6;
+  .label {
     color: #666666;
     font-size: 16px;
-    padding: 15px 10px 10px 0;
   }
 
-  span {
-    color: #B3B3B3;
-    font-size: 12px;
-    font-weight: 300;
-  }
-
-  .innerInput {
-    input {
-      border-bottom:1px solid #FF6800;
-    }
-    .red {
-      color: red;
-    }
-  }
-}
-
-
-
-.selectInput {
-  margin: 30px;
-  select {
+  .columns_header {
     width: 100%;
-    border:none;
-    border-bottom: 1px solid #E6E6E6;
-    font-size: 16px;
-  }
+    tr {
+      border-bottom: 1px solid #E6E6E6;
 
-  .innerInput {
-    .red {
-      color: red;
+      th {
+        color: #1A1A1A;
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 24px;
+        text-align: center;
+      }
+      td {
+        color: #4D4D4D;
+        font-weight: normal;
+        font-size: 18px;
+        line-height: 27px;
+        text-align: center;
+        height: 62px;
+      }
     }
   }
-}

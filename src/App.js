@@ -3,47 +3,21 @@ import logo from './logo.svg';
 import save from './save.svg';
 import loading from './loading.svg';
 import './App.scss';
-import { Notification, Button, Card } from './components'
+import { Notification, Button, Card, InputGroup } from './components'
 
 function App() {
   return (
     <div className="App">
       <div className="column">
         <Card title="Text Input">
-          <form className="textInput">
-            <div>
-              <input type="text" value="Text Input Label"/>
-            </div>
-            <br />
-            <div className="innerInput">
-              <span>Text Input Label</span>
-              <input type="text" value="Text Input Value"/>
-              <span className="red">Text Input Error</span>
-            </div>
-            <br />
-            <div>
-              <span>Text Input Label</span>
-              <input type="text" value="Text Input Value"/>
-            </div>
-          </form>
+          <InputGroup type="text"/>
+          <InputGroup label="Text Input Label" error="Text Input Error" type="text"/>
+          <InputGroup label="Text Input Label" type="text"/>
         </Card>
         <Card title="Select Input">
-          <form className="selectInput">
-            <div>
-              <select><option value="">Select Input Label</option></select>
-            </div>
-            <br />
-            <div className="innerInput">
-              <span>Text Input Label</span><br/>
-              <select><option value="">Select Input Label</option></select><br/>
-              <span className="red">Text Input Error</span>
-            </div>
-            <br />
-            <div>
-              <span>Text Input Label</span><br/>
-              <select><option value="">Select Input Label</option></select>
-            </div>
-          </form>
+          <InputGroup type="select"/>
+          <InputGroup label="Text Input Label" error="Text Input Error" type="select"/>
+          <InputGroup label="Text Input Label" type="select"/>
         </Card>
       </div>
       <div className="column">
@@ -51,15 +25,15 @@ function App() {
           <p>Primary</p>
           <div className="direction">
             <div>
-              <span>Default</span>
+              <span className="label">Default</span>
               <Button> Button</Button>
             </div>
             <div>
-              <span>With Icon</span>
+              <span className="label">With Icon</span>
               <Button> <img src={save} alt="save" /> Button</Button>
             </div>
             <div>
-              <span>Loading</span>
+              <span className="label">Loading</span>
               <Button> <img src={loading} className="loading" alt="loading" /> Loading</Button>
             </div>
           </div>
@@ -67,15 +41,15 @@ function App() {
           <br />
           <div className="direction">
             <div>
-              <span>Default</span>
+              <span className="label">Default</span>
               <Button primary> Button</Button>
             </div>
             <div>
-              <span>Default</span>
+              <span className="label">Default</span>
               <Button primary> <img src={save} alt="save" /> Button</Button>
             </div>
             <div>
-              <span>Default</span>
+              <span className="label">Default</span>
               <Button primary> <img src={loading} className="loading" alt="loading" /> Loading</Button>
             </div>
           </div>
@@ -87,6 +61,40 @@ function App() {
         </Card>
         <Card title="Card with just one tab"/>
         <Card title="Card with tabs"/>
+        <Card title="Card with table date">
+        <table className="columns_header">
+        <tr>
+          <th>Columns Header</th>
+          <th>Columns Header</th>
+          <th>Columns Header</th>
+          <th>Columns Header</th>
+        </tr>
+        <tr>
+          <td>Columns value</td>
+          <td>Columns value</td>
+          <td>Columns value</td>
+          <td>Columns value</td>
+        </tr>
+        <tr>
+          <td>Columns value</td>
+          <td>Columns value</td>
+          <td>Columns value</td>
+          <td>Columns value</td>
+        </tr>
+        <tr>
+          <td>Columns value</td>
+          <td>Columns value</td>
+          <td>Columns value</td>
+          <td>Columns value</td>
+        </tr>
+        <tr>
+          <td>Columns value</td>
+          <td>Columns value</td>
+          <td>Columns value</td>
+          <td>Columns value</td>
+        </tr>
+      </table>
+      </Card>
       </div>
     </div>
   );
