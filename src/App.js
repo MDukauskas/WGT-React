@@ -3,20 +3,13 @@ import logo from './logo.svg';
 import save from './save.svg';
 import loading from './loading.svg';
 import error from './error.svg';
-import errorblack from './errorblack.svg';
 import './App.scss';
-import { Notification, Button, Card, InputGroup } from './components'
+import { Notification, Button, Card, InputGroup, Tabs } from './components';
 
 function App() {
   return (
     <div className="App">
       <div className="column">
-        <Card title="Icons">
-          <div className="list-icons">
-            <img src={save} alt="save"/>
-            <img src={errorblack} alt="errorblack"/>
-          </div>
-        </Card>
         <Card title="Text Input">
           <InputGroup type="text"/>
           <InputGroup label="Text Input Label" error="Text Input Error" type="text"/>
@@ -67,7 +60,8 @@ function App() {
           <Notification type="info">Info notification example</Notification>
         </Card>
         <Card title="Card with just one tab"/>
-        <Card title="Card with tabs"/>
+        <Tabs>
+        </Tabs>
         <Card title="Card with table date">
           <table className="columns_header">
             <tbody>
