@@ -61,6 +61,7 @@ function App() {
         </Card>
         <Card title="Card with just one tab"/>
         <Tabs>
+          
         </Tabs>
         <Card title="Card with table date">
           <table className="columns_header">
