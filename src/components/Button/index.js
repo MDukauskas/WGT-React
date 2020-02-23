@@ -8,7 +8,9 @@ export const Button = (props) => {
     if (props.primary === true) {
         classes = classes + ' btn-primary'
     }
-    return  <button className={classes}>{props.children}</button>
-    
+    return <button className={classes} onClick={props.onClick} >
+        {props.children}
+    </button>
+
 
 }
