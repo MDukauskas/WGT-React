@@ -4,8 +4,12 @@ import logo from '../../logo.svg';
 import save from '../../save.svg';
 import loading from '../../loading.svg';
 import error from '../../error.svg';
+import vector from '../../vector.svg';
+import vector1 from '../../vector1.svg';
+import position from '../../position.svg';
+import logout from '../../logout.svg';
 
-import { Notification, Button, Card, InputGroup, Tabs } from '../../components';
+import { Notification, Button, Card, InputGroup, Tabs, Menu } from '../../components';
 import './index.scss'
 
 const tabs = [{
@@ -110,6 +114,7 @@ export const ComponentsPage = (props) => {
                     </tbody>
                 </table>
             </Card>
+            <Menu />
         </div>
     </React.Fragment>
 }
