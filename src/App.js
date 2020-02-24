@@ -5,7 +5,7 @@ import {
   Route,
   Link
 } from "react-router-dom";
-import { ComponentsPage, LoginPage, UserListPage } from './pages';
+import { ComponentsPage, LoginPage, UserListPage, NewUserPage } from './pages';
 import './App.scss';
 
 
@@ -21,6 +21,9 @@ function App() {
           </Route>
           <Route path="/users">
             <UserListPage />
+          </Route>
+          <Route path="/newusers">
+            <NewUserPage />
           </Route>
           <Route path="/">
             <ComponentsPage />
