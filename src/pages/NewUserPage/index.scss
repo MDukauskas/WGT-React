@@ -1,0 +1,23 @@
+.newuser {
+    display: flex;
+    width: 100%;
+
+    .newuser-menu {
+        margin: 20px 40px;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+
+        .newuser-body {
+            display: flex;
+
+            .newuser-conten1 {
+                width: 50%;
+            }
+
+            .newuser-conten2 {
+                width: 50%;
+            }
+        }
+    }
+}
