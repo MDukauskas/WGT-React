@@ -20,7 +20,7 @@ export const UserListPage = () => {
             <div className="content">
                 <div className="content-header">
                     <p>Users</p>
-                    <Button primary> New User</Button>
+                    <a href="/newusers"><Button primary> New User</Button></a>
                 </div>
                 <div className="rectangle"><div className="rectangle-orange"></div></div>
 

@@ -26,7 +26,6 @@ export const InputGroup = (props) => {
                 <option
                     value=""
                 >
-                    Select Input Label
                 </option>
             </select>
         }

@@ -2,21 +2,33 @@
     display: flex;
     width: 100%;
 
-    .newuser-menu {
+    .newuser_menu {
         margin: 20px 40px;
         width: 100%;
         display: flex;
         flex-direction: column;
 
-        .newuser-body {
+        .newuser_body {
             display: flex;
 
-            .newuser-conten1 {
+            .newuser_conten1 {
                 width: 50%;
+
+                .newuser_conten1-button {
+                    display: flex;
+                    margin-top: 40px;
+                }
             }
 
-            .newuser-conten2 {
+            .newuser_conten2 {
                 width: 50%;
+
+                img {
+                    margin-left: 80px;
+                    margin-top: 60px;
+                    padding-top: 20px;
+                    border: 1px solid #CCCCCC;
+                }
             }
         }
     }

@@ -1,4 +1,4 @@
-.userside {
+.departments {
     display: flex;
     width: 100%;
 
@@ -8,7 +8,7 @@
         display: flex;
         flex-direction: column;
 
-        .content-header {
+        .content_header {
             display: flex;
             justify-content: space-between;
             
@@ -27,50 +27,26 @@
             background-color: #E6E6E6;
         }
 
-        .rectangle-orange {
+        .rectangle_orange {
             width: 90%;
             height: 6px;
             background-color: #FF6800;
         }
 
-        .content-body {
+        .content_body {
             display: flex;
             flex-grow: 1;
             flex-direction: column;
             justify-content: left;
 
-            .content-body--orange {
+            .content_body--orange {
                 color: #FF6800;
             }
 
-            img {
-                border: 1px solid #4D4D4D;
-                border-radius: 50px;
-                padding: 3px;
-            }
-        }
-
-        .spacer {
-            flex-grow: 1;
-        }
-
-        .content-pagination {
-            font-size: 16px;
-
-            a {
-                color: black;
-                float: left;
-                padding: 8px 16px;
-                text-decoration: none;
-                border: 1px solid #ddd;
-            }
-
-            a:hover {
-                color: #FF6800;
-              }
-
-            a:hover:not(.active) {
-                background-color: #ddd;
+            .columns_header {
+                display: flex;
+                align-content: flex-start;
+                width: 100%;
             }
         }
     }

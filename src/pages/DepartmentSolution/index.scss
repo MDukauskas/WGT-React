@@ -1,0 +1,58 @@
+.departmentSolution {
+    display: flex;
+    width: 100%;
+
+    .departmentSolution_menu {
+        margin: 20px 40px;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+
+        .departmentSolution_header {
+            display: flex;
+            justify-content: space-between;
+        }
+        
+            .departmentSolution_content {
+                width: 100%;
+            }
+        .departmentSolution_content-button {
+            display: flex;
+            margin-top: 40px;
+        }
+    }
+
+}
+
+.userside1 {
+    display: flex;
+    width: 100%;
+    flex-grow: 1;
+    flex-direction: column;
+    justify-content: left;
+
+    .spacer {
+        flex-grow: 1;
+    }
+
+    .content-pagination {
+        font-size: 16px;
+
+        a {
+            color: black;
+            float: left;
+            padding: 8px 16px;
+            text-decoration: none;
+            border: 1px solid #ddd;
+        }
+
+        a:hover {
+            color: #FF6800;
+            }
+
+        a:hover:not(.active) {
+            background-color: #ddd;
+        }
+    }
+
+}
