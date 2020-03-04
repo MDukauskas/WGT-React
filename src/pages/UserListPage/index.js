@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { InputGroup, Card, Button, Menu } from '../../components'
 import './index.scss'
-import vector1black from '../../vector1black.svg';
+import vector1black from '../../assets/vector1black.svg';
 import { Link } from 'react-router-dom'
 
 export const UserListPage = () => {
@@ -21,7 +21,7 @@ export const UserListPage = () => {
             <div className="content">
                 <div className="content-header">
                     <p>Users</p>
-                    <Link to="/newusers"><Button primary> New User</Button></Link>
+                    <Link to="/users/new"><Button primary> New User</Button></Link>
                 </div>
                 <div className="rectangle"><div className="rectangle-orange"></div></div>
 

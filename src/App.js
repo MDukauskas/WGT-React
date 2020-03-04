@@ -5,7 +5,7 @@ import {
   Route,
   Link
 } from "react-router-dom";
-import { ComponentsPage, LoginPage, UserListPage, NewUserPage, Departments, Newdepartment, DepartmentSolution } from './pages';
+import { ComponentsPage, LoginPage, UserListPage, UserNewPage, Departments, DepartmentNew, DepartmentSolution } from './pages';
 import './App.scss';
 
 
@@ -19,19 +19,19 @@ function App() {
           <Route exact path="/">
             <LoginPage />
           </Route>
-          <Route path="/users">
+          <Route exact path="/users">
             <UserListPage />
           </Route>
-          <Route path="/newusers">
-            <NewUserPage />
+          <Route path="/users/new">
+            <UserNewPage />
           </Route>
-          <Route path="/departments">
+          <Route exact path="/departments">
             <Departments />
           </Route>
-          <Route path="/newdepartment">
-            <Newdepartment />
+          <Route path="/departments/new">
+            <DepartmentNew />
           </Route>
-          <Route path="/departmentSolution">
+          <Route path="/departments/solution">
             <DepartmentSolution />
           </Route>
           <Route path="/componentspage">

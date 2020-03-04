@@ -1,13 +1,13 @@
 import React, { useState } from 'react'
 
-import logo from '../../logo.svg';
-import save from '../../save.svg';
-import loading from '../../loading.svg';
-import error from '../../error.svg';
-import vector from '../../vector.svg';
-import vector1 from '../../vector1.svg';
-import position from '../../position.svg';
-import logout from '../../logout.svg';
+import logo from '../../assets/logo.svg';
+import save from '../../assets/save.svg';
+import loading from '../../assets/loading.svg';
+import error from '../../assets/error.svg';
+import vector from '../../assets/vector.svg';
+import vector1 from '../../assets/vector1.svg';
+import position from '../../assets/position.svg';
+import logout from '../../assets/logout.svg';
 
 import { Notification, Button, Card, InputGroup, Tabs, Menu } from '../../components';
 import './index.scss'

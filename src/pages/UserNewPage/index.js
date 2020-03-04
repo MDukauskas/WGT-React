@@ -2,12 +2,12 @@ import React, { useState } from 'react'
 import { InputGroup, Card, Button, Menu, Tabs } from '../../components'
 import './index.scss'
 
-import save from '../../save.svg';
-import newuser from '../../newuser.svg';
+import save from '../../assets/save.svg';
+import newuser from '../../assets/newuser.svg';
 
-export const NewUserPage = () => {
+export const UserNewPage = () => {
 
-    const content1 = <div className="newuser_body">
+    const newUserForm = <div className="newuser_body">
         <div className="newuser_conten1">
             <InputGroup label="Name" type="text" />
             <InputGroup label="Surname" type="text" />
@@ -23,7 +23,7 @@ export const NewUserPage = () => {
         </div>
     </div>
 
-    const content2 = <div className="newuser_body">
+    const newUserComment = <div className="newuser_body">
         <div className="newuser_conten1">
             <InputGroup label="Comments" type="text" />
             <div className="newuser_conten1-button">
@@ -40,10 +40,10 @@ export const NewUserPage = () => {
                 <h2>New User</h2>
                 <Tabs tabs={[{
                     title: 'General information',
-                    content: content1,
+                    content: newUserForm,
                 }, {
                     title: 'Comments',
-                    content: content2,
+                    content: newUserComment,
                 }]}
                 />
             </div>

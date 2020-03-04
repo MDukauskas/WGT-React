@@ -2,9 +2,9 @@ import React, { useState } from 'react'
 import { InputGroup, Card, Button, Menu } from '../../components'
 import './index.scss'
 
-import save from '../../save.svg';
+import save from '../../assets/save.svg';
 
-export const Newdepartment = () => {
+export const DepartmentNew = () => {
 
     return (
         <div className="newdepartment">

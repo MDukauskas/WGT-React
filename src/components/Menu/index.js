@@ -1,10 +1,10 @@
 import React from 'react'
 import './index.scss'
 import { Link } from 'react-router-dom';
-import vector from '../../vector.svg';
-import vector1 from '../../vector1.svg';
-import position from '../../position.svg';
-import logout from '../../logout.svg';
+import vector from '../../assets/vector.svg';
+import vector1 from '../../assets/vector1.svg';
+import position from '../../assets/position.svg';
+import logout from '../../assets/logout.svg';
 
 
 export const Menu = (props) => {

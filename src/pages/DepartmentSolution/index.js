@@ -2,9 +2,9 @@ import React, { useState } from 'react'
 import { InputGroup, Card, Button, Menu, Tabs } from '../../components'
 import './index.scss'
 
-import save from '../../save.svg';
-import loading from '../../loading.svg';
-import vector1black from '../../vector1black.svg';
+import save from '../../assets/save.svg';
+import loading from '../../assets/loading.svg';
+import vector1black from '../../assets/vector1black.svg';
 
 export const DepartmentSolution = () => {
 

@@ -20,7 +20,7 @@ export const Departments = () => {
             <div className="content">
                 <div className="content_header">
                     <p>Departments</p>
-                    <Link to="/newdepartment"><Button primary> New department</Button></Link>
+                    <Link to="/departments/new"><Button primary> New department</Button></Link>
                 </div>
                 <div className="rectangle"><div className="rectangle_orange"></div></div>
 
