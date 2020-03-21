@@ -48,6 +48,12 @@
                 border-radius: 50px;
                 padding: 3px;
             }
+
+            .columns_header {
+                td {
+                    text-align: center;
+                }
+            }
         }
 
         .spacer {

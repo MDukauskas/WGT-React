@@ -1,18 +1,32 @@
-import React, { useState } from 'react'
-import { InputGroup, Card, Button, Menu } from '../../components'
+import React, { useState, useEffect } from 'react'
+import { Button, Menu } from '../../components'
 import './index.scss'
 import { Link } from 'react-router-dom'
 
 export const Departments = () => {
+    const [departments, setDepartments] = useState([])
 
-    const departments = [
-        { id: 1, department: 'dpc', },
-        { id: 2, department: 'dpc', },
-        { id: 3, department: 'dpc', },
-        { id: 4, department: 'dpc', },
-        { id: 5, department: 'dpc', },
-        { id: 6, department: 'dpc' },
-    ]
+    useEffect(() => {
+        const authKey = localStorage.getItem('auth_key')
+        fetch('http://localhost:3002/api/department', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${authKey}`
+            }
+        }).then((response) => {
+            if (!response.ok) { throw response }
+            return response.json()
+        }).then(data => {
+            setDepartments(data)
+        }).catch(error => {
+            if (error.status === 401) {
+                window.location.href = '/'
+            } else {
+                console.error(error)
+            }
+        })
+    }, [])
 
     return (
         <div className="departments">
@@ -28,13 +42,15 @@ export const Departments = () => {
                     <p>Loading...</p>
                     <p>There are no data to show currently. <span className="content_body--orange"> Create new department</span></p>
                     <table className="columns_header">
-                        <tbody>
+                        <thead>
                             <tr>
-                                <th>Department name</th>
+                                <th align="left">Department name</th>
                             </tr>
+                        </thead>
+                        <tbody>
                             {departments.map((department, id) =>
                                 < tr key={id}>
-                                    <td>{department.department}</td>
+                                    <td align="left">{department.name}</td>
                                 </tr>)}
                         </tbody>
                     </table>

@@ -1,0 +1,34 @@
+{
+  "user": [
+    {
+      "id": 1,
+      "name": "Mindaugas",
+      "surname": "Dukauskas",
+      "photo": "",
+      "comment": "",
+      "departmentId": 1,
+      "positionId": 1
+    },
+    {
+      "name": "New User Name",
+      "surname": "New User Surname",
+      "photo": "",
+      "comment": "test comment",
+      "departmentId": 1,
+      "positionId": 1,
+      "id": 2
+    }
+  ],
+  "department": [
+    {
+      "id": 1,
+      "name": "Solutions"
+    }
+  ],
+  "position": [
+    {
+      "id": 1,
+      "name": "Developer"
+    }
+  ]
+}

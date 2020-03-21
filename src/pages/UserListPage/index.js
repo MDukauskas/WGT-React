@@ -1,19 +1,34 @@
-import React, { useState } from 'react'
-import { InputGroup, Card, Button, Menu } from '../../components'
+import React, { useState, useEffect } from 'react'
+import { Button, Menu } from '../../components'
 import './index.scss'
 import vector1black from '../../assets/vector1black.svg';
 import { Link } from 'react-router-dom'
 
 export const UserListPage = () => {
 
-    const users = [
-        { id: 1, photo: vector1black, name: 'Ieva', surname: 'Kavaliauskiene', position: 'Senior sales operation specialist', department: 'dpc', comments: "no info" },
-        { id: 2, photo: vector1black, name: 'Ieva', surname: 'Kavaliauskiene', position: 'Senior sales operation specialist', department: 'dpc', comments: "no info" },
-        { id: 3, photo: vector1black, name: 'Ieva', surname: 'Kavaliauskiene', position: 'Senior sales operation specialist', department: 'dpc', comments: "no info" },
-        { id: 4, photo: vector1black, name: 'Ieva', surname: 'Kavaliauskiene', position: 'Senior sales operation specialist', department: 'dpc', comments: "no info" },
-        { id: 5, photo: vector1black, name: 'Ieva', surname: 'Kavaliauskiene', position: 'Senior sales operation specialist', department: 'dpc', comments: "no info" },
-        { id: 6, photo: vector1black, name: 'Ieva', surname: 'Kavaliauskiene', position: 'Senior sales operation specialist', department: 'dpc', comments: "no info" },
-    ]
+    const [users, setusers] = useState([])
+
+    useEffect(() => {
+        const authKey = localStorage.getItem('auth_key')
+        fetch('http://localhost:3002/api/user', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${authKey}`
+            }
+        }).then((response) => {
+            if (!response.ok) { throw response }
+            return response.json()
+        }).then(data => {
+            setusers(data)
+        }).catch(error => {
+            if (error.status === 401) {
+                window.location.href = '/'
+            } else {
+                console.error(error)
+            }
+        })
+    }, [])
 
     return (
         <div className="userside">
@@ -29,23 +44,25 @@ export const UserListPage = () => {
                     <p>Loading...</p>
                     <p>There are no data to show currently. <span className="content-body--orange"> Create new user</span></p>
                     <table className="columns_header">
-                        <tbody>
+                        <thead>
                             <tr>
-                                <th>Photo</th>
                                 <th>Name</th>
                                 <th>Surname</th>
-                                <th>Position</th>
-                                <th>Department</th>
+                                <th>Photo</th>
                                 <th>Comments</th>
+                                <th>Department</th>
+                                <th>Position</th>
                             </tr>
+                        </thead>
+                        <tbody>
                             {users.map((user, id) =>
                                 < tr key={id}>
-                                    <td> <img src={user.photo} alt="vector1black" />{}</td>
-                                    <td>{user.name}</td>
+                                    <td><Link to={`/users/${user.id}`}>{user.name}</Link></td>
                                     <td>{user.surname}</td>
-                                    <td>{user.position}</td>
-                                    <td>{user.department}</td>
-                                    <td>{user.comments}</td>
+                                    <td> <img src={user.photo} alt="vector1black" />{}</td>
+                                    <td>{user.comment}</td>
+                                    <td>{user.departmentId}</td>
+                                    <td>{user.positionId}</td>
                                 </tr>)}
                         </tbody>
                     </table>
