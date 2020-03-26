@@ -50,7 +50,7 @@ export const Departments = () => {
                         <tbody>
                             {departments.map((department, id) =>
                                 < tr key={id}>
-                                    <td align="left">{department.name}</td>
+                                    <td align="left"><Link to={`/departments/${department.id}`}>{department.name}</Link></td>
                                 </tr>)}
                         </tbody>
                     </table>

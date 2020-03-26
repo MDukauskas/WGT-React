@@ -67,15 +67,15 @@ export const ComponentsPage = (props) => {
                 <br /><br />
                 <div className="direction">
                     <div>
-                        <span className="label">Default</span>
+                        <span className="label">Delete</span>
                         <Button danger> Button</Button>
                     </div>
                     <div>
-                        <span className="label">Default</span>
+                        <span className="label">Delete</span>
                         <Button danger> <img src={save} alt="save" /> Button</Button>
                     </div>
                     <div>
-                        <span className="label">Default</span>
+                        <span className="label">Delete</span>
                         <Button danger><img src={loading} className="loading" alt="loading" /> Loading</Button>
                     </div>
                 </div>

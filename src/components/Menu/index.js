@@ -20,7 +20,7 @@ export const Menu = (props) => {
                 <Link to="/departments"><li><img src={vector} alt="vector" />Departments</li></Link>
                 <Link to="#"><li><img src={position} alt="position" />Positions</li></Link>
                 <div className="spacer"></div>
-                <Link to="#"><li><img src={logout} alt="logout" />Logout</li></Link>
+                <Link to="/"><li><img src={logout} alt="logout" />Logout</li></Link>
             </ul>
         </div>
     )

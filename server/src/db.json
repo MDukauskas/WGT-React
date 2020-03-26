@@ -10,19 +10,55 @@
       "positionId": 1
     },
     {
-      "name": "New User Name",
-      "surname": "New User Surname",
+      "name": "Ieva",
+      "surname": "Kavaliauskiene",
       "photo": "",
       "comment": "test comment",
       "departmentId": 1,
       "positionId": 1,
       "id": 2
+    },
+    {
+      "name": "Ieva22",
+      "surname": "Kavaliauskiene",
+      "photo": "",
+      "id": 3,
+      "comment": "More information"
+    },
+    {
+      "name": "Ieva55",
+      "surname": "Kav55",
+      "photo": "",
+      "id": 6,
+      "comment": "More notification"
+    },
+    {
+      "name": "Ieva66",
+      "surname": "Kav66",
+      "photo": "",
+      "id": 7,
+      "comment": "No additional info"
     }
   ],
   "department": [
     {
       "id": 1,
       "name": "Solutions"
+    },
+    {
+      "name": "DPC",
+      "id": 2
+    },
+    {
+      "id": 4
+    },
+    {
+      "name": "WordPress",
+      "id": 7
+    },
+    {
+      "name": "Solutions",
+      "id": 8
     }
   ],
   "position": [

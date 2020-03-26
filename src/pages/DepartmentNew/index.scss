@@ -9,6 +9,9 @@
         flex-direction: column;
 
         .newdepartment-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
     
             .newdepartment_menu {
                 margin: 20px 40px;
@@ -20,11 +23,22 @@
                     width: 100%;
                 }
             }
-            .newdepartment_content-button {
-                display: flex;
-                margin-top: 40px;
-            }
+        }
+        .newdepartment_content-button {
+            display: flex;
+            margin-top: 40px;
         }
     }
 
+    .content-notification {
+        position: fixed;
+        right: 20px;
+        bottom: 20px;
+    }
+    
+    .columns_header {
+        td {
+            text-align: center;
+        }
+    }
 }

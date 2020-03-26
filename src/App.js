@@ -2,10 +2,9 @@ import React from "react";
 import {
   BrowserRouter as Router,
   Switch,
-  Route,
-  Link
+  Route
 } from "react-router-dom";
-import { ComponentsPage, LoginPage, UserListPage, UserNewPage, Departments, DepartmentNew, DepartmentSolution } from './pages';
+import { ComponentsPage, LoginPage, UserListPage, UserNewPage, Departments, DepartmentNew } from './pages';
 import './App.scss';
 
 
@@ -28,11 +27,8 @@ function App() {
           <Route exact path="/departments">
             <Departments />
           </Route>
-          <Route path="/departments/new">
+          <Route exact path="/departments/:id">
             <DepartmentNew />
-          </Route>
-          <Route path="/departments/solution">
-            <DepartmentSolution />
           </Route>
           <Route path="/componentspage">
             <ComponentsPage />

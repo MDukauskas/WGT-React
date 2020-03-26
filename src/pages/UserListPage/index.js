@@ -66,7 +66,9 @@ export const UserListPage = () => {
                                 </tr>)}
                         </tbody>
                     </table>
-                    <div className="spacer"></div>
+                </div>
+                <div className="spacer"></div>
+                <div className="content-footer">
                     <div className="content-pagination">
                         <a href="#">&laquo;</a>
                         <a href="#">❮</a>
@@ -81,6 +83,6 @@ export const UserListPage = () => {
                     </div>
                 </div>
             </div>
-        </div>
+        </div >
     );
 }

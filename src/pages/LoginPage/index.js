@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { InputGroup, Card, Button } from '../../components'
+import { InputGroup, Card, Button, Notification } from '../../components'
 import './index.scss'
 import { useHistory } from 'react-router-dom';
 
@@ -8,6 +8,7 @@ export const LoginPage = () => {
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    const [showNotification, setShowNotification] = useState(false)
 
     function login() {
         const credentials = {
@@ -33,6 +34,9 @@ export const LoginPage = () => {
         <div className="login">
             <h1>On Boarding</h1>
             <Card title="Log In">
+                {showNotification &&
+                    <Notification type="error">Username or password is incorrect</Notification>
+                }
                 <InputGroup type="text" label="Email" value={email} onChange={setEmail} />
                 <InputGroup type="password" label="Password" value={password} onChange={setPassword} />
                 <Button onClick={login} primary>Log In</Button>
