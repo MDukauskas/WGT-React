@@ -9,6 +9,10 @@ import logout from '../../assets/logout.svg';
 
 export const Menu = (props) => {
 
+    function removeSesion() {
+        localStorage.setItem('auth_key', '')
+    }
+
     return (
         <div className="menu">
             <div className="menu-title">
@@ -18,9 +22,9 @@ export const Menu = (props) => {
             <ul className="menu-body">
                 <Link to="/users"><li><img src={vector1} alt="vector1" />Users</li></Link>
                 <Link to="/departments"><li><img src={vector} alt="vector" />Departments</li></Link>
-                <Link to="#"><li><img src={position} alt="position" />Positions</li></Link>
+                <Link to="/positions"><li><img src={position} alt="position" />Positions</li></Link>
                 <div className="spacer"></div>
-                <Link to="/"><li><img src={logout} alt="logout" />Logout</li></Link>
+                <Link to="/"><li onClick={removeSesion}><img src={logout} alt="logout" />Logout</li></Link>
             </ul>
         </div>
     )

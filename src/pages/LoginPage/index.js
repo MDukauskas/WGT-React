@@ -23,10 +23,17 @@ export const LoginPage = () => {
             },
             body: JSON.stringify(credentials)
         }).then((response) => {
+            if (!response.ok) { throw response }
             return response.json()
         }).then(data => {
             localStorage.setItem('auth_key', data.access_token)
             history.push('/departments')
+        }).catch(error => {
+            if (error.status === 401) {
+                setShowNotification(true)
+            } else {
+                console.error(error)
+            }
         })
     }
 
@@ -38,7 +45,8 @@ export const LoginPage = () => {
                     <Notification type="error">Username or password is incorrect</Notification>
                 }
                 <InputGroup type="text" label="Email" value={email} onChange={setEmail} />
-                <InputGroup type="password" label="Password" value={password} onChange={setPassword} />
+                <InputGroup type="password" label="Password" value={password} onChange={setPassword}
+                />
                 <Button onClick={login} primary>Log In</Button>
             </Card>
         </div>

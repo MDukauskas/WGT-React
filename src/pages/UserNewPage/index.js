@@ -11,7 +11,8 @@ export const UserNewPage = () => {
 
     const [user, setuser] = useState({})
     const [showNotifications, setShowNotifications] = useState(false)
-    const [department, setDepartment] = useState([])
+    const [positions, setPositions] = useState([])
+    const [departments, setDepartments] = useState([])
 
     useEffect(() => {
         if (id === "new") {
@@ -53,7 +54,7 @@ export const UserNewPage = () => {
             if (!response.ok) { throw response }
             return response.json()
         }).then(data => {
-            setDepartment(data)
+            setDepartments(data)
         }).catch(error => {
             if (error.status === 401) {
                 window.location.href = '/'
@@ -62,6 +63,31 @@ export const UserNewPage = () => {
             }
         })
     }, [id])
+
+    useEffect(() => {
+        if (id === "new") {
+            return
+        }
+        const authKey = localStorage.getItem('auth_key')
+        fetch(`http://localhost:3002/api/position`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${authKey}`
+            }
+        }).then((response) => {
+            if (!response.ok) { throw response }
+            return response.json()
+        }).then(data => {
+            setPositions(data)
+        }).catch(error => {
+            if (error.status === 401) {
+                window.location.href = '/'
+            } else {
+                console.error(error)
+            }
+        })
+    }, [])
 
     function save() {
 
@@ -111,12 +137,22 @@ export const UserNewPage = () => {
 
     const [showDelete, setShowDelete] = useState(false)
 
-    const generalInforamtionTab = <div className="newuser_body">
+    const generalInformationTab = <div className="newuser_body">
         <div className="newuser_conten1">
             <InputGroup label="Name" type="text" value={user.name} onChange={value => setuser({ ...user, name: value })} />
             <InputGroup label="Surname" type="text" value={user.surname} onChange={value => setuser({ ...user, surname: value })} />
-            <InputGroup label="Position" type="select" />
-            <InputGroup label="Department" type="select" />
+            <InputGroup label="Department" type="select" value={user.departmentId} onChange={value => setuser({ ...user, departmentId: value })} >
+                <option value=""></option>
+                {departments.map(department => (
+                    <option key={department.id} value={department.id} >{department.name}</option>
+                ))}
+            </InputGroup>
+            <InputGroup label="Position" type="select" value={user.positionId} onChange={value => setuser({ ...user, positionId: value })} >
+                <option value=""></option>
+                {positions.map(position => (
+                    <option key={position.id} value={position.id} >{position.name}</option>
+                ))}
+            </InputGroup>
             <div className="newuser_conten1-button">
                 <Button primary onClick={save}> <img src={saveIcon} alt="save" /> Save</Button>
                 <Link to="/users" style={{ textDecoration: 'none' }}><Button>Cancel</Button></Link>
@@ -125,7 +161,7 @@ export const UserNewPage = () => {
         <div className="newuser_conten2">
             <img src={newuser} alt="newuser" />
         </div>
-    </div>
+    </div >
 
     const commentTab = <div className="newuser_body">
         <div className="newuser_conten1">
@@ -163,7 +199,7 @@ export const UserNewPage = () => {
                     </div>
                     <Tabs tabs={[{
                         title: 'General information',
-                        content: generalInforamtionTab,
+                        content: generalInformationTab,
                     }, {
                         title: 'Comments',
                         content: commentTab,

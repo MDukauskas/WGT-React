@@ -3,12 +3,12 @@ import { Button, Menu } from '../../components'
 import './index.scss'
 import { Link } from 'react-router-dom'
 
-export const Departments = () => {
-    const [departments, setDepartments] = useState([])
+export const PositionListPage = () => {
+    const [positions, setPositions] = useState([])
 
     useEffect(() => {
         const authKey = localStorage.getItem('auth_key')
-        fetch('http://localhost:3002/api/department', {
+        fetch('http://localhost:3002/api/position', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -18,7 +18,7 @@ export const Departments = () => {
             if (!response.ok) { throw response }
             return response.json()
         }).then(data => {
-            setDepartments(data)
+            setPositions(data)
         }).catch(error => {
             if (error.status === 401) {
                 window.location.href = '/'
@@ -29,12 +29,12 @@ export const Departments = () => {
     }, [])
 
     return (
-        <div className="departments">
+        <div className="positions">
             <Menu />
             <div className="content">
                 <div className="content_header">
-                    <p>Departments</p>
-                    <Link to="/departments/new"><Button primary> New department</Button></Link>
+                    <p>Positions</p>
+                    <Link to="/positions/new"><Button primary> New position</Button></Link>
                 </div>
                 <div className="rectangle"><div className="rectangle_orange"></div></div>
 
@@ -44,13 +44,13 @@ export const Departments = () => {
                     <table className="columns_header">
                         <thead>
                             <tr>
-                                <th align="left">Department name</th>
+                                <th align="left">Position name</th>
                             </tr>
                         </thead>
                         <tbody>
-                            {departments.map((department, id) =>
+                            {positions.map((position, id) =>
                                 < tr key={id}>
-                                    <td align="left"><Link to={`/departments/${department.id}`}>{department.name}</Link></td>
+                                    <td align="left"><Link to={`/positions/${position.id}`}>{position.name}</Link></td>
                                 </tr>)}
                         </tbody>
                     </table>

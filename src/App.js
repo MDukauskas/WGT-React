@@ -4,7 +4,7 @@ import {
   Switch,
   Route
 } from "react-router-dom";
-import { ComponentsPage, LoginPage, UserListPage, UserNewPage, Departments, DepartmentNew } from './pages';
+import { ComponentsPage, LoginPage, UserListPage, UserNewPage, DepartmentListPage, DepartmentNewPage, PositionListPage, PositionsNewPage } from './pages';
 import './App.scss';
 
 
@@ -25,10 +25,16 @@ function App() {
             <UserNewPage />
           </Route>
           <Route exact path="/departments">
-            <Departments />
+            <DepartmentListPage />
           </Route>
           <Route exact path="/departments/:id">
-            <DepartmentNew />
+            <DepartmentNewPage />
+          </Route>
+          <Route exact path="/positions">
+            <PositionListPage />
+          </Route>
+          <Route exact path="/positions/:id">
+            <PositionsNewPage />
           </Route>
           <Route path="/componentspage">
             <ComponentsPage />

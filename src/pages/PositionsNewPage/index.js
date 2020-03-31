@@ -6,10 +6,10 @@ import { useParams, Link } from 'react-router-dom';
 import saveIcon from '../../assets/save.svg';
 import vector1black from '../../assets/vector1black.svg';
 
-export const DepartmentNew = () => {
+export const PositionsNewPage = () => {
     const { id } = useParams()
 
-    const [department, setDepartment] = useState({})
+    const [position, setPosition] = useState({})
     const [showNotifications, setShowNotifications] = useState(false)
     const [users, setusers] = useState([])
     const [showDelete, setShowDelete] = useState(false)
@@ -19,7 +19,7 @@ export const DepartmentNew = () => {
             return
         }
         const authKey = localStorage.getItem('auth_key')
-        fetch(`http://localhost:3002/api/department/${id}`, {
+        fetch(`http://localhost:3002/api/position/${id}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -29,7 +29,7 @@ export const DepartmentNew = () => {
             if (!response.ok) { throw response }
             return response.json()
         }).then(data => {
-            setDepartment(data)
+            setPosition(data)
         }).catch(error => {
             if (error.status === 401) {
                 window.location.href = '/'
@@ -65,13 +65,13 @@ export const DepartmentNew = () => {
     function save() {
 
         const authKey = localStorage.getItem('auth_key')
-        fetch(id === 'new' ? 'http://localhost:3002/api/department' : `http://localhost:3002/api/department/${id}`, {
+        fetch(id === 'new' ? 'http://localhost:3002/api/position' : `http://localhost:3002/api/position/${id}`, {
             method: id === 'new' ? 'POST' : 'PUT',
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${authKey}`
             },
-            body: JSON.stringify(department)
+            body: JSON.stringify(position)
         }).then((response) => {
             if (!response.ok) { throw response }
         }).then(() => {
@@ -90,7 +90,7 @@ export const DepartmentNew = () => {
     function remove() {
 
         const authKey = localStorage.getItem('auth_key')
-        fetch(`http://localhost:3002/api/department/${id}`, {
+        fetch(`http://localhost:3002/api/position/${id}`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',
@@ -110,10 +110,10 @@ export const DepartmentNew = () => {
     }
 
     const content1 = <div className="newdepartment_content">
-        <InputGroup label="Department name" type="text" value={department.name} onChange={value => setDepartment({ ...department, name: value })} />
+        <InputGroup label="Department name" type="text" value={position.name} onChange={value => setPosition({ ...position, name: value })} />
         <div className="newdepartment_content-button">
             <Button primary onClick={save}> <img src={saveIcon} alt="save" /> Save</Button>
-            <Link to="/departments" style={{ textDecoration: 'none' }}><Button>Cancel</Button></Link>
+            <Link to="/positions" style={{ textDecoration: 'none' }}><Button>Cancel</Button></Link>
         </div>
     </div >
 
@@ -147,12 +147,12 @@ export const DepartmentNew = () => {
             {showDelete ?
                 <div className="newdepartment_menu">
                     <div className="newdepartment__header">
-                        <h2>{department.name}</h2>
+                        <h2>{position.name}</h2>
                     </div>
                     <div className="newdepartment__body">
-                        <Card title={`Are you sure you want to delete department ${department.name} ?`}>
+                        <Card title={`Are you sure you want to delete department ${position.name} ?`}>
                             <div className="newdepartment_content-button">
-                                <Button danger onClick={remove}> <img src={saveIcon} alt="save" /> Delete department </Button>
+                                <Button danger onClick={remove}> <img src={saveIcon} alt="save" /> Delete position </Button>
                                 <Button onClick={() => setShowDelete(false)}>Cancel</Button>
                             </div>
                         </Card>
@@ -161,8 +161,8 @@ export const DepartmentNew = () => {
                 :
                 < div className="newdepartment_menu">
                     <div className="newdepartment-header">
-                        {id === "new" ? <h2>New department</h2> : <h2>{department.name}</h2>}
-                        <Button onClick={() => setShowDelete(true)}><img src={saveIcon} alt="save" /> Delete department</Button>
+                        {id === "new" ? <h2>New department</h2> : <h2>{position.name}</h2>}
+                        <Button onClick={() => setShowDelete(true)}><img src={saveIcon} alt="save" /> Delete position</Button>
                     </div>
                     <div className="newdepartment-body">
                         {id === "new" ?

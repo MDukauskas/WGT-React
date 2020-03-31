@@ -1,6 +1,5 @@
 import React from 'react'
 import './index.scss'
-import { useState } from 'react'
 
 
 export const InputGroup = (props) => {
@@ -22,11 +21,11 @@ export const InputGroup = (props) => {
             />
         }
         {props.type === 'select' &&
-            <select>
-                <option
-                    value=""
-                >
-                </option>
+            <select
+                value={props.value}
+                onChange={e => props.onChange && props.onChange(e.target.value)}
+            >
+                {props.children}
             </select>
         }
         <span className="input-group_error">{props.error}</span>
