@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
 import { Button, Menu } from '../../components'
 import './index.scss'
-import { Link } from 'react-router-dom'
 
 export const DepartmentListPage = () => {
     const [departments, setDepartments] = useState([])
@@ -27,6 +27,7 @@ export const DepartmentListPage = () => {
             }
         })
     }, [])
+
 
     return (
         <div className="departments">

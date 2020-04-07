@@ -3,31 +3,35 @@ import { Button, Menu } from '../../components'
 import './index.scss'
 import vector1black from '../../assets/vector1black.svg';
 import { Link } from 'react-router-dom'
+import { makeRequest } from '../../Services'
 
 export const UserListPage = () => {
 
     const [users, setusers] = useState([])
+    const [positions, setPositions] = useState([])
+    const [departments, setDepartments] = useState([])
 
     useEffect(() => {
-        const authKey = localStorage.getItem('auth_key')
-        fetch('http://localhost:3002/api/user', {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${authKey}`
-            }
-        }).then((response) => {
-            if (!response.ok) { throw response }
-            return response.json()
-        }).then(data => {
-            setusers(data)
-        }).catch(error => {
-            if (error.status === 401) {
-                window.location.href = '/'
-            } else {
-                console.error(error)
-            }
-        })
+        makeRequest('http://localhost:3002/api/user')
+            .then(data => {
+                setusers(data)
+            })
+    }, [])
+
+
+    useEffect(() => {
+        makeRequest('http://localhost:3002/api/position')
+            .then(data => {
+                setPositions(data)
+            })
+    }, [])
+
+
+    useEffect(() => {
+        makeRequest('http://localhost:3002/api/department')
+            .then(data => {
+                setDepartments(data)
+            })
     }, [])
 
     return (
@@ -55,15 +59,20 @@ export const UserListPage = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            {users.map((user, id) =>
-                                < tr key={id}>
-                                    <td><Link to={`/users/${user.id}`}>{user.name}</Link></td>
-                                    <td>{user.surname}</td>
-                                    <td> <img src={user.photo} alt="vector1black" />{}</td>
-                                    <td>{user.comment}</td>
-                                    <td>{user.departmentId}</td>
-                                    <td>{user.positionId}</td>
-                                </tr>)}
+                            {users.map((user, id) => {
+                                const position = positions.find(position => position.id === user.positionId)
+                                const department = departments.find(department => department.id === user.departmentId)
+                                return (
+                                    <tr key={id}>
+                                        <td><Link to={`/users/${user.id}`}>{user.name}</Link></td>
+                                        <td>{user.surname}</td>
+                                        <td> <img src={user.photo} alt="vector1black" />{}</td>
+                                        <td>{user.comment}</td>
+                                        <td>{department && department.name}</td>
+                                        <td>{position && position.name}</td>
+                                    </tr>
+                                )
+                            })}
                         </tbody>
                     </table>
                 </div>

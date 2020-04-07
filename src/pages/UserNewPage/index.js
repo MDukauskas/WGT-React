@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { InputGroup, Button, Menu, Tabs, Card, Notification } from '../../components'
 import './index.scss'
+import { makeRequest } from '../../Services'
 
 import saveIcon from '../../assets/save.svg';
 import newuser from '../../assets/newuser.svg';
@@ -89,27 +90,25 @@ export const UserNewPage = () => {
         })
     }, [])
 
-    function save() {
+    const save = () => {
+        if (id === 'new') {
+            add()
+        } else {
+            update()
+        }
+    }
 
-        const authKey = localStorage.getItem('auth_key')
-        fetch(id === 'new' ? 'http://localhost:3002/api/user' : `http://localhost:3002/api/user/${id}`, {
-            method: id === 'new' ? 'POST' : 'PUT',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${authKey}`
-            },
-            body: JSON.stringify(user)
-        }).then((response) => {
-            if (!response.ok) { throw response }
-        }).then(() => {
+    const add = () => {
+        makeRequest('user', { method: 'POST', body: JSON.stringify(user) }).then(() => {
             setShowNotifications(true)
             setTimeout(() => { setShowNotifications(false) }, 5000)
-        }).catch(error => {
-            if (error.status === 401) {
-                window.location.href = '/'
-            } else {
-                console.error(error)
-            }
+        })
+    }
+
+    const update = () => {
+        makeRequest(`user/${id}`, { method: 'PUT', body: JSON.stringify(user) }).then(() => {
+            setShowNotifications(true)
+            setTimeout(() => { setShowNotifications(false) }, 5000)
         })
     }
 
@@ -141,13 +140,13 @@ export const UserNewPage = () => {
         <div className="newuser_conten1">
             <InputGroup label="Name" type="text" value={user.name} onChange={value => setuser({ ...user, name: value })} />
             <InputGroup label="Surname" type="text" value={user.surname} onChange={value => setuser({ ...user, surname: value })} />
-            <InputGroup label="Department" type="select" value={user.departmentId} onChange={value => setuser({ ...user, departmentId: value })} >
+            <InputGroup label="Department" type="select" value={user.departmentId} onChange={value => setuser({ ...user, departmentId: parseInt(value) })} >
                 <option value=""></option>
                 {departments.map(department => (
                     <option key={department.id} value={department.id} >{department.name}</option>
                 ))}
             </InputGroup>
-            <InputGroup label="Position" type="select" value={user.positionId} onChange={value => setuser({ ...user, positionId: value })} >
+            <InputGroup label="Position" type="select" value={user.positionId} onChange={value => setuser({ ...user, positionId: parseInt(value) })} >
                 <option value=""></option>
                 {positions.map(position => (
                     <option key={position.id} value={position.id} >{position.name}</option>
@@ -167,7 +166,7 @@ export const UserNewPage = () => {
         <div className="newuser_conten1">
             <InputGroup label="Comments" type="text" value={user.comment} onChange={value => setuser({ ...user, comment: value })} />
             <div className="newuser_conten1-button">
-                <Button primary onClick={save}> <img src={saveIcon} alt="save" /> Save</Button>
+                <Button primary onClick={() => { save(user) }}> <img src={saveIcon} alt="save" /> Save</Button>
                 <Link to="/users" style={{ textDecoration: 'none' }}><Button>Cancel</Button></Link>
             </div>
         </div>
