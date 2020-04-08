@@ -19,76 +19,31 @@ export const UserNewPage = () => {
         if (id === "new") {
             return
         }
-        const authKey = localStorage.getItem('auth_key')
-        fetch(`http://localhost:3002/api/user/${id}`, {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${authKey}`
-            }
-        }).then((response) => {
-            if (!response.ok) { throw response }
-            return response.json()
-        }).then(data => {
-            setuser(data)
-        }).catch(error => {
-            if (error.status === 401) {
-                window.location.href = '/'
-            } else {
-                console.error(error)
-            }
-        })
+        makeRequest(`/user/${id}`)
+            .then(data => {
+                setuser(data)
+            })
     }, [id])
 
     useEffect(() => {
         if (id === "new") {
             return
         }
-        const authKey = localStorage.getItem('auth_key')
-        fetch(`http://localhost:3002/api/department`, {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${authKey}`
-            }
-        }).then((response) => {
-            if (!response.ok) { throw response }
-            return response.json()
-        }).then(data => {
-            setDepartments(data)
-        }).catch(error => {
-            if (error.status === 401) {
-                window.location.href = '/'
-            } else {
-                console.error(error)
-            }
-        })
+        makeRequest(`/department`)
+            .then(data => {
+                setDepartments(data)
+            })
     }, [id])
 
     useEffect(() => {
         if (id === "new") {
             return
         }
-        const authKey = localStorage.getItem('auth_key')
-        fetch(`http://localhost:3002/api/position`, {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${authKey}`
-            }
-        }).then((response) => {
-            if (!response.ok) { throw response }
-            return response.json()
-        }).then(data => {
-            setPositions(data)
-        }).catch(error => {
-            if (error.status === 401) {
-                window.location.href = '/'
-            } else {
-                console.error(error)
-            }
-        })
-    }, [])
+        makeRequest(`/position`)
+            .then(data => {
+                setPositions(data)
+            })
+    }, [id])
 
     const save = () => {
         if (id === 'new') {

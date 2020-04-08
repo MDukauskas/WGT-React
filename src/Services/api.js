@@ -4,7 +4,7 @@ export const makeRequest = (url, options = {}) => {
 
     const authKey = localStorage.getItem('auth_key')
 
-    return fetch(`http://localhost:3002/api/${url}`, {
+    return fetch(`http://localhost:3002/api${url}`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',

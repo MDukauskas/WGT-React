@@ -2,30 +2,16 @@ import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { Button, Menu } from '../../components'
 import './index.scss'
+import { makeRequest } from '../../Services'
 
 export const DepartmentListPage = () => {
     const [departments, setDepartments] = useState([])
 
     useEffect(() => {
-        const authKey = localStorage.getItem('auth_key')
-        fetch('http://localhost:3002/api/department', {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${authKey}`
-            }
-        }).then((response) => {
-            if (!response.ok) { throw response }
-            return response.json()
-        }).then(data => {
-            setDepartments(data)
-        }).catch(error => {
-            if (error.status === 401) {
-                window.location.href = '/'
-            } else {
-                console.error(error)
-            }
-        })
+        makeRequest('/department')
+            .then(data => {
+                setDepartments(data)
+            })
     }, [])
 
 

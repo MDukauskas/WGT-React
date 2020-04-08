@@ -2,9 +2,11 @@ import React, { useState, useEffect } from 'react'
 import { InputGroup, Card, Button, Menu, Tabs, Notification } from '../../components'
 import './index.scss'
 import { useParams, Link } from 'react-router-dom';
+import { makeRequest } from '../../Services'
 
 import saveIcon from '../../assets/save.svg';
-import vector1black from '../../assets/vector1black.svg';
+
+// import vector1black from '../../assets/vector1black.svg';
 
 export const DepartmentNewPage = () => {
     const { id } = useParams()
@@ -18,74 +20,40 @@ export const DepartmentNewPage = () => {
         if (id === "new") {
             return
         }
-        const authKey = localStorage.getItem('auth_key')
-        fetch(`http://localhost:3002/api/department/${id}`, {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${authKey}`
-            }
-        }).then((response) => {
-            if (!response.ok) { throw response }
-            return response.json()
-        }).then(data => {
-            setDepartment(data)
-        }).catch(error => {
-            if (error.status === 401) {
-                window.location.href = '/'
-            } else {
-                console.error(error)
-            }
-        })
+        makeRequest(`/department/${id}`)
+            .then(data => {
+                setDepartment(data)
+            })
     }, [id])
 
-
     useEffect(() => {
-        const authKey = localStorage.getItem('auth_key')
-        fetch('http://localhost:3002/api/user', {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${authKey}`
-            }
-        }).then((response) => {
-            if (!response.ok) { throw response }
-            return response.json()
-        }).then(data => {
-            setusers(data)
-        }).catch(error => {
-            if (error.status === 401) {
-                window.location.href = '/'
-            } else {
-                console.error(error)
-            }
-        })
+        makeRequest('/user')
+            .then(data => {
+                setusers(data)
+            })
     }, [])
 
-    function save() {
+    const save = () => {
+        if (id === 'new') {
+            add()
+        } else {
+            update()
+        }
+    }
 
-        const authKey = localStorage.getItem('auth_key')
-        fetch(id === 'new' ? 'http://localhost:3002/api/department' : `http://localhost:3002/api/department/${id}`, {
-            method: id === 'new' ? 'POST' : 'PUT',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${authKey}`
-            },
-            body: JSON.stringify(department)
-        }).then((response) => {
-            if (!response.ok) { throw response }
-        }).then(() => {
+    const add = () => {
+        makeRequest('/department', { method: 'POST', body: JSON.stringify(department) }).then(() => {
             setShowNotifications(true)
             setTimeout(() => { setShowNotifications(false) }, 5000)
-        }).catch(error => {
-            if (error.status === 401) {
-                window.location.href = '/'
-            } else {
-                console.error(error)
-            }
         })
     }
 
+    const update = () => {
+        makeRequest(`/department/${id}`, { method: 'PUT', body: JSON.stringify(department) }).then(() => {
+            setShowNotifications(true)
+            setTimeout(() => { setShowNotifications(false) }, 5000)
+        })
+    }
 
     function remove() {
 

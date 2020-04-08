@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Button, Menu } from '../../components'
 import './index.scss'
-import vector1black from '../../assets/vector1black.svg';
+// import vector1black from '../../assets/vector1black.svg';
 import { Link } from 'react-router-dom'
 import { makeRequest } from '../../Services'
 
@@ -12,7 +12,7 @@ export const UserListPage = () => {
     const [departments, setDepartments] = useState([])
 
     useEffect(() => {
-        makeRequest('http://localhost:3002/api/user')
+        makeRequest('/user')
             .then(data => {
                 setusers(data)
             })
@@ -20,7 +20,7 @@ export const UserListPage = () => {
 
 
     useEffect(() => {
-        makeRequest('http://localhost:3002/api/position')
+        makeRequest('/position')
             .then(data => {
                 setPositions(data)
             })
@@ -28,7 +28,7 @@ export const UserListPage = () => {
 
 
     useEffect(() => {
-        makeRequest('http://localhost:3002/api/department')
+        makeRequest('/department')
             .then(data => {
                 setDepartments(data)
             })
@@ -79,16 +79,16 @@ export const UserListPage = () => {
                 <div className="spacer"></div>
                 <div className="content-footer">
                     <div className="content-pagination">
-                        <a href="#">&laquo;</a>
-                        <a href="#">❮</a>
-                        <a href="#" className="active">1</a>
-                        <a href="#">2</a>
-                        <a href="#">3</a>
-                        <a href="#">4</a>
-                        <a href="#">5</a>
-                        <a href="#">6</a>
-                        <a href="#">❯</a>
-                        <a href="#">&raquo;</a>
+                        <a href="/users">&laquo;</a>
+                        <a href="/users">❮</a>
+                        <a href="/users" className="active">1</a>
+                        <a href="/users">2</a>
+                        <a href="/users">3</a>
+                        <a href="/users">4</a>
+                        <a href="/users">5</a>
+                        <a href="/users">6</a>
+                        <a href="/users">❯</a>
+                        <a href="/users">&raquo;</a>
                     </div>
                 </div>
             </div>

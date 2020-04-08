@@ -6,7 +6,7 @@ import error from '../../assets/error.svg';
 import info from '../../assets/info.svg';
 
 export const Notification = (props) => {
-    let classes = 'notification' + ' notification-' + props.type
+    let classes = `notification notification-${props.type}`
     return <div className={classes}>
         {props.type === 'success' && <img src={succes} alt="succes" />}
         {props.type === 'error' && <img src={error} alt="error" />}

@@ -4,7 +4,7 @@ import './index.scss'
 import { useParams, Link } from 'react-router-dom';
 
 import saveIcon from '../../assets/save.svg';
-import vector1black from '../../assets/vector1black.svg';
+// import vector1black from '../../assets/vector1black.svg';
 import { makeRequest } from '../../Services'
 
 export const PositionsNewPage = () => {
@@ -19,7 +19,7 @@ export const PositionsNewPage = () => {
         if (id === "new") {
             return
         }
-        makeRequest(`position/${id}`, { method: 'POST' })
+        makeRequest(`/position/${id}`)
             .then(data => {
                 setPosition(data)
             })
@@ -27,37 +27,33 @@ export const PositionsNewPage = () => {
 
 
     useEffect(() => {
-        makeRequest('user')
+        makeRequest('/user')
             .then(data => {
                 setusers(data)
             })
     }, [])
 
-    function save() {
-        const authKey = localStorage.getItem('auth_key')
-        const url =
-
-            fetch(id === 'new' ? 'http://localhost:3002/api/position' : `http://localhost:3002/api/position/${id}`, {
-                method: id === 'new' ? 'POST' : 'PUT',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${authKey}`
-                },
-                body: JSON.stringify(position)
-            }).then((response) => {
-                if (!response.ok) { throw response }
-            }).then(() => {
-                setShowNotifications(true)
-                setTimeout(() => { setShowNotifications(false) }, 5000)
-            }).catch(error => {
-                if (error.status === 401) {
-                    window.location.href = '/'
-                } else {
-                    console.error(error)
-                }
-            })
+    const save = () => {
+        if (id === 'new') {
+            add()
+        } else {
+            update()
+        }
     }
 
+    const add = () => {
+        makeRequest('/position', { method: 'POST', body: JSON.stringify(position) }).then(() => {
+            setShowNotifications(true)
+            setTimeout(() => { setShowNotifications(false) }, 5000)
+        })
+    }
+
+    const update = () => {
+        makeRequest(`/position/${id}`, { method: 'PUT', body: JSON.stringify(position) }).then(() => {
+            setShowNotifications(true)
+            setTimeout(() => { setShowNotifications(false) }, 5000)
+        })
+    }
 
     function remove() {
 

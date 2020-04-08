@@ -72,6 +72,10 @@
     {
       "name": "WordPress",
       "id": 9
+    },
+    {
+      "name": "WordPress13",
+      "id": 10
     }
   ],
   "position": [
@@ -86,6 +90,10 @@
     {
       "name": "Front end developer",
       "id": 4
+    },
+    {
+      "name": "Front end developer12",
+      "id": 5
     }
   ]
 }
