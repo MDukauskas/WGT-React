@@ -55,25 +55,10 @@ export const DepartmentNewPage = () => {
         })
     }
 
-    function remove() {
 
-        const authKey = localStorage.getItem('auth_key')
-        fetch(`http://localhost:3002/api/department/${id}`, {
-            method: 'DELETE',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${authKey}`
-            },
-        }).then((response) => {
-            if (!response.ok) { throw response }
-        }).then(() => {
+    function remove() {
+        makeRequest(`/department/${id}`, { method: 'DELETE' }).then(() => {
             window.location.href = '/departments'
-        }).catch(error => {
-            if (error.status === 401) {
-                window.location.href = '/'
-            } else {
-                console.error(error)
-            }
         })
     }
 

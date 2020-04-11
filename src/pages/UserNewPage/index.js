@@ -54,38 +54,22 @@ export const UserNewPage = () => {
     }
 
     const add = () => {
-        makeRequest('user', { method: 'POST', body: JSON.stringify(user) }).then(() => {
+        makeRequest('/user', { method: 'POST', body: JSON.stringify(user) }).then(() => {
             setShowNotifications(true)
             setTimeout(() => { setShowNotifications(false) }, 5000)
         })
     }
 
     const update = () => {
-        makeRequest(`user/${id}`, { method: 'PUT', body: JSON.stringify(user) }).then(() => {
+        makeRequest(`/user/${id}`, { method: 'PUT', body: JSON.stringify(user) }).then(() => {
             setShowNotifications(true)
             setTimeout(() => { setShowNotifications(false) }, 5000)
         })
     }
 
     function remove() {
-
-        const authKey = localStorage.getItem('auth_key')
-        fetch(`http://localhost:3002/api/user/${id}`, {
-            method: 'DELETE',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${authKey}`
-            },
-        }).then((response) => {
-            if (!response.ok) { throw response }
-        }).then(() => {
+        makeRequest(`/user/${id}`, { method: 'DELETE' }).then(() => {
             window.location.href = '/users'
-        }).catch(error => {
-            if (error.status === 401) {
-                window.location.href = '/'
-            } else {
-                console.error(error)
-            }
         })
     }
 
