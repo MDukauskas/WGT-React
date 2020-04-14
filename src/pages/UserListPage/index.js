@@ -4,17 +4,20 @@ import './index.scss'
 // import vector1black from '../../assets/vector1black.svg';
 import { Link } from 'react-router-dom'
 import { makeRequest } from '../../Services'
+import { connect } from 'react-redux'
+import { getUsersList, setUsers } from '../../store'
 
-export const UserListPage = () => {
 
-    const [users, setusers] = useState([])
+const UserListPageComponent = ({ users, setUsers }) => {
+
+
     const [positions, setPositions] = useState([])
     const [departments, setDepartments] = useState([])
 
     useEffect(() => {
         makeRequest('/user')
             .then(data => {
-                setusers(data)
+                setUsers(data)
             })
     }, [])
 
@@ -95,3 +98,13 @@ export const UserListPage = () => {
         </div >
     );
 }
+
+const mapStateToProps = (state) => ({
+    users: getUsersList(state)
+})
+
+const mapDispatchToProps = {
+    setUsers
+}
+
+export const UserListPage = connect(mapStateToProps, mapDispatchToProps)(UserListPageComponent)
