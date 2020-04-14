@@ -1,0 +1,76 @@
+{
+  "user": [
+    {
+      "id": 1,
+      "name": "Mindaugas",
+      "surname": "Dukauskas",
+      "photo": "",
+      "comment": "",
+      "departmentId": 1,
+      "positionId": 1,
+      "position": "1"
+    },
+    {
+      "name": "Ieva",
+      "surname": "Kavaliauskiene",
+      "photo": "",
+      "comment": "test comment",
+      "departmentId": 1,
+      "positionId": 1,
+      "id": 2,
+      "position": "3",
+      "department": "1"
+    },
+    {
+      "name": "Ieva22",
+      "surname": "Kavaliauskiene",
+      "photo": "",
+      "id": 3,
+      "comment": "More information",
+      "department": "7",
+      "position": "1",
+      "departmentId": "2",
+      "positionId": "3"
+    },
+    {
+      "name": "Ieva111",
+      "surname": "Ieva111",
+      "photo": "",
+      "id": 8,
+      "departmentId": 2,
+      "positionId": 1
+    }
+  ],
+  "department": [
+    {
+      "id": 1,
+      "name": "Solutions"
+    },
+    {
+      "name": "DPC",
+      "id": 2
+    },
+    {
+      "name": "WordPress",
+      "id": 7
+    },
+    {
+      "name": "Solutions",
+      "id": 8
+    }
+  ],
+  "position": [
+    {
+      "id": 1,
+      "name": "Developer"
+    },
+    {
+      "name": "Front end developer",
+      "id": 3
+    },
+    {
+      "name": "Front end developer12",
+      "id": 5
+    }
+  ]
+}

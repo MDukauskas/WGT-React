@@ -1,11 +1,9 @@
-import React, { useState } from 'react'
+import React from 'react'
 
-import logo from '../../logo.svg';
-import save from '../../save.svg';
-import loading from '../../loading.svg';
-import error from '../../error.svg';
+import save from '../../assets/save.svg';
+import loading from '../../assets/loading.svg';
 
-import { Notification, Button, Card, InputGroup, Tabs } from '../../components';
+import { Notification, Button, Card, InputGroup, Tabs, Menu } from '../../components';
 import './index.scss'
 
 const tabs = [{
@@ -30,8 +28,8 @@ export const ComponentsPage = (props) => {
             </Card>
             <Card title="Select Inputs">
                 <InputGroup type="select" />
-                <InputGroup label="Text Input Label" error="Text Input Error" type="select" />
-                <InputGroup label="Text Input Label" type="select" />
+                <InputGroup label="Text Select Label" error="Text Input Error" type="select" />
+                <InputGroup label="Text Select Label" type="select" />
             </Card>
         </div>
         <div className="column">
@@ -66,6 +64,21 @@ export const ComponentsPage = (props) => {
                         <Button><img src={loading} className="loading" alt="loading" /> Loading</Button>
                     </div>
                 </div>
+                <br /><br />
+                <div className="direction">
+                    <div>
+                        <span className="label">Delete</span>
+                        <Button danger> Button</Button>
+                    </div>
+                    <div>
+                        <span className="label">Delete</span>
+                        <Button danger> <img src={save} alt="save" /> Button</Button>
+                    </div>
+                    <div>
+                        <span className="label">Delete</span>
+                        <Button danger><img src={loading} className="loading" alt="loading" /> Loading</Button>
+                    </div>
+                </div>
             </Card>
             <Card title="Notifications">
                 <Notification type="success">Success notification example</Notification>
@@ -76,13 +89,15 @@ export const ComponentsPage = (props) => {
             <Tabs tabs={tabs} />
             <Card title="Card with table date">
                 <table className="columns_header">
-                    <tbody>
+                    <thead>
                         <tr>
                             <th>Columns Header</th>
                             <th>Columns Header</th>
                             <th>Columns Header</th>
                             <th>Columns Header</th>
                         </tr>
+                    </thead>
+                    <tbody>
                         <tr>
                             <td>Columns value</td>
                             <td>Columns value</td>
@@ -110,6 +125,7 @@ export const ComponentsPage = (props) => {
                     </tbody>
                 </table>
             </Card>
+            <Menu />
         </div>
     </React.Fragment>
 }

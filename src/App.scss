@@ -23,7 +23,7 @@
   font-size: 16px;
 }
 
-.columns_header {
+table {
   width: 100%;
   tr {
     border-bottom: 1px solid #E6E6E6;
@@ -33,14 +33,12 @@
       font-weight: 600;
       font-size: 16px;
       line-height: 24px;
-      text-align: center;
     }
     td {
       color: #4D4D4D;
       font-weight: normal;
       font-size: 18px;
       line-height: 27px;
-      text-align: center;
       height: 62px;
     }
   }
