@@ -1,18 +1,19 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { Button, Menu } from '../../components'
 import './index.scss'
 import { Link } from 'react-router-dom'
 import { makeRequest } from '../../Services'
+import { connect } from 'react-redux'
+import { getPositionsList, setPositions } from '../../store'
 
-export const PositionListPage = () => {
-    const [positions, setPositions] = useState([])
+const PositionListPageComponent = ({ positions, setPositions }) => {
 
     useEffect(() => {
         makeRequest('/position')
             .then(data => {
                 setPositions(data)
             })
-    }, [])
+    })
 
     return (
         <div className="positions">
@@ -45,3 +46,13 @@ export const PositionListPage = () => {
         </div>
     )
 }
+
+const mapStateToProps = (state) => ({
+    positions: getPositionsList(state)
+})
+
+const mapDispatchToProps = {
+    setPositions
+}
+
+export const PositionListPage = connect(mapStateToProps, mapDispatchToProps)(PositionListPageComponent)

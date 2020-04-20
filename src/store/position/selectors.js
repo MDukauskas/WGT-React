@@ -1,0 +1,1 @@
+export const getPositionsList = (state) => state.positions.list

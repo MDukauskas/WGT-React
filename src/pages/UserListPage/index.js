@@ -19,7 +19,7 @@ const UserListPageComponent = ({ users, setUsers }) => {
             .then(data => {
                 setUsers(data)
             })
-    }, [])
+    })
 
 
     useEffect(() => {

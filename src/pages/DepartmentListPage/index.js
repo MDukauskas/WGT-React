@@ -1,18 +1,20 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { Button, Menu } from '../../components'
 import './index.scss'
 import { makeRequest } from '../../Services'
+import { connect } from 'react-redux'
+import { getDepartmentsList, setDepartments } from '../../store'
 
-export const DepartmentListPage = () => {
-    const [departments, setDepartments] = useState([])
+const DepartmentListPageComponent = ({ departments, setDepartments }) => {
+
 
     useEffect(() => {
         makeRequest('/department')
             .then(data => {
                 setDepartments(data)
             })
-    }, [])
+    })
 
 
     return (
@@ -46,3 +48,13 @@ export const DepartmentListPage = () => {
         </div>
     )
 }
+
+const mapStateToProps = (state) => ({
+    departments: getDepartmentsList(state)
+})
+
+const mapDispatchToProps = {
+    setDepartments
+}
+
+export const DepartmentListPage = connect(mapStateToProps, mapDispatchToProps)(DepartmentListPageComponent)

@@ -1,0 +1,1 @@
+export const getDepartmentsList = (state) => state.departments.list
