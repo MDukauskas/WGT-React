@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Button, Menu } from '../../components'
+import { Button, Menu, Pagination } from '../../components'
 import './index.scss'
 // import vector1black from '../../assets/vector1black.svg';
 import { Link } from 'react-router-dom'
@@ -10,16 +10,21 @@ import { getUsersList, setUsers } from '../../store'
 
 const UserListPageComponent = ({ users, setUsers }) => {
 
-
     const [positions, setPositions] = useState([])
     const [departments, setDepartments] = useState([])
 
+    const [loading, setLoadoing] = useState(false);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [usersPerPage] = useState(5);
+
     useEffect(() => {
+        setLoadoing(true)
         makeRequest('/user')
             .then(data => {
                 setUsers(data)
+                setLoadoing(false)
             })
-    })
+    }, [setUsers])
 
 
     useEffect(() => {
@@ -36,6 +41,10 @@ const UserListPageComponent = ({ users, setUsers }) => {
                 setDepartments(data)
             })
     }, [])
+
+    const indexOfLastUser = currentPage * usersPerPage
+    const indexOfFirstUser = indexOfLastUser - usersPerPage
+    const currentUser = users.slice(indexOfFirstUser, indexOfLastUser)
 
     return (
         <div className="userside">
@@ -62,7 +71,7 @@ const UserListPageComponent = ({ users, setUsers }) => {
                             </tr>
                         </thead>
                         <tbody>
-                            {users.map((user, id) => {
+                            {currentUser.map((user, id) => {
                                 const position = positions.find(position => position.id === user.positionId)
                                 const department = departments.find(department => department.id === user.departmentId)
                                 return (
@@ -79,21 +88,7 @@ const UserListPageComponent = ({ users, setUsers }) => {
                         </tbody>
                     </table>
                 </div>
-                <div className="spacer"></div>
-                <div className="content-footer">
-                    <div className="content-pagination">
-                        <a href="/users">&laquo;</a>
-                        <a href="/users">❮</a>
-                        <a href="/users" className="active">1</a>
-                        <a href="/users">2</a>
-                        <a href="/users">3</a>
-                        <a href="/users">4</a>
-                        <a href="/users">5</a>
-                        <a href="/users">6</a>
-                        <a href="/users">❯</a>
-                        <a href="/users">&raquo;</a>
-                    </div>
-                </div>
+                < Pagination usersPerPage={usersPerPage} totalUsers={users.length} onPageChange={page => setCurrentPage(page)} />
             </div>
         </div >
     );

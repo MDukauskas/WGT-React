@@ -1,0 +1,27 @@
+.pagination {
+    display: flex;
+    width: 100%;
+
+    .spacer {
+        flex-grow: 1;
+    }
+    .content-pagination {
+        font-size: 16px;
+
+        a {
+            color: black;
+            padding: 8px 16px;
+            text-decoration: none;
+            border: 1px solid #ddd;
+        }
+
+        a:hover {
+            color: #FF6800;
+          }
+
+        a:hover:not(.active) {
+            background-color: #ddd;
+        }
+    }
+
+}

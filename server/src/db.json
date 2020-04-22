@@ -47,6 +47,22 @@
       "photo": "",
       "id": 10,
       "departmentId": 2
+    },
+    {
+      "name": "Ieva",
+      "surname": "Kava",
+      "photo": "",
+      "id": 11,
+      "departmentId": 9,
+      "positionId": 3
+    },
+    {
+      "name": "Ieva",
+      "surname": "Kav",
+      "photo": "",
+      "id": 12,
+      "departmentId": 7,
+      "positionId": 1
     }
   ],
   "department": [
@@ -97,6 +113,10 @@
     {
       "name": "Sales",
       "id": 16
+    },
+    {
+      "name": "DPC",
+      "id": 17
     }
   ],
   "position": [

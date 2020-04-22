@@ -3,7 +3,7 @@ import React from 'react'
 import save from '../../assets/save.svg';
 import loading from '../../assets/loading.svg';
 
-import { Notification, Button, Card, InputGroup, Tabs, Menu } from '../../components';
+import { Notification, Button, Card, InputGroup, Tabs, Menu, Pagination } from '../../components';
 import './index.scss'
 
 const tabs = [{
@@ -31,6 +31,10 @@ export const ComponentsPage = (props) => {
                 <InputGroup label="Text Select Label" error="Text Input Error" type="select" />
                 <InputGroup label="Text Select Label" type="select" />
             </Card>
+            <Card title="Pagination">
+                <Pagination />
+            </Card>
+            <Menu />
         </div>
         <div className="column">
             <Card title="Buttons">
@@ -125,8 +129,7 @@ export const ComponentsPage = (props) => {
                     </tbody>
                 </table>
             </Card>
-            <Menu />
         </div>
-    </React.Fragment>
+    </React.Fragment >
 }
 
