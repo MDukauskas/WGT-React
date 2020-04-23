@@ -15,7 +15,7 @@ const UserListPageComponent = ({ users, setUsers }) => {
 
     const [loading, setLoadoing] = useState(false);
     const [currentPage, setCurrentPage] = useState(1);
-    const [usersPerPage] = useState(5);
+    const [itemsPerPage] = useState(5);
 
     useEffect(() => {
         setLoadoing(true)
@@ -42,8 +42,8 @@ const UserListPageComponent = ({ users, setUsers }) => {
             })
     }, [])
 
-    const indexOfLastUser = currentPage * usersPerPage
-    const indexOfFirstUser = indexOfLastUser - usersPerPage
+    const indexOfLastUser = currentPage * itemsPerPage
+    const indexOfFirstUser = indexOfLastUser - itemsPerPage
     const currentUser = users.slice(indexOfFirstUser, indexOfLastUser)
 
     return (
@@ -88,7 +88,7 @@ const UserListPageComponent = ({ users, setUsers }) => {
                         </tbody>
                     </table>
                 </div>
-                < Pagination usersPerPage={usersPerPage} totalUsers={users.length} onPageChange={page => setCurrentPage(page)} />
+                < Pagination itemsPerPage={itemsPerPage} totalItems={users.length} onPageChange={page => setCurrentPage(page)} />
             </div>
         </div >
     );

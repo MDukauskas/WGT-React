@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { Button, Menu } from '../../components'
+import { Button, Menu, Pagination } from '../../components'
 import './index.scss'
 import { makeRequest } from '../../Services'
 import { connect } from 'react-redux'
@@ -8,14 +8,22 @@ import { getDepartmentsList, setDepartments } from '../../store'
 
 const DepartmentListPageComponent = ({ departments, setDepartments }) => {
 
+    const [loading, setLoadoing] = useState(false);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [itemsPerPage] = useState(5);
 
     useEffect(() => {
+        setLoadoing(true)
         makeRequest('/department')
             .then(data => {
                 setDepartments(data)
+                setLoadoing(false)
             })
-    })
+    }, [setDepartments])
 
+    const indexOfLastUser = currentPage * itemsPerPage
+    const indexOfFirstUser = indexOfLastUser - itemsPerPage
+    const currentDepartment = departments.slice(indexOfFirstUser, indexOfLastUser)
 
     return (
         <div className="departments">
@@ -37,13 +45,14 @@ const DepartmentListPageComponent = ({ departments, setDepartments }) => {
                             </tr>
                         </thead>
                         <tbody>
-                            {departments.map((department, id) =>
+                            {currentDepartment.map((department, id) =>
                                 < tr key={id}>
                                     <td align="left"><Link to={`/departments/${department.id}`}>{department.name}</Link></td>
                                 </tr>)}
                         </tbody>
                     </table>
                 </div>
+                < Pagination itemsPerPage={itemsPerPage} totalItems={departments.length} onPageChange={page => setCurrentPage(page)} />
             </div>
         </div>
     )

@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react'
-import { Button, Menu } from '../../components'
+import React, { useState, useEffect } from 'react'
+import { Button, Menu, Pagination } from '../../components'
 import './index.scss'
 import { Link } from 'react-router-dom'
 import { makeRequest } from '../../Services'
@@ -8,12 +8,22 @@ import { getPositionsList, setPositions } from '../../store'
 
 const PositionListPageComponent = ({ positions, setPositions }) => {
 
+    const [loading, setLoadoing] = useState(false);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [itemsPerPage] = useState(5);
+
     useEffect(() => {
+        setLoadoing(true)
         makeRequest('/position')
             .then(data => {
                 setPositions(data)
+                setLoadoing(false)
             })
-    })
+    }, [setPositions])
+
+    const indexOfLastUser = currentPage * itemsPerPage
+    const indexOfFirstUser = indexOfLastUser - itemsPerPage
+    const currentPosition = positions.slice(indexOfFirstUser, indexOfLastUser)
 
     return (
         <div className="positions">
@@ -35,13 +45,14 @@ const PositionListPageComponent = ({ positions, setPositions }) => {
                             </tr>
                         </thead>
                         <tbody>
-                            {positions.map((position, id) =>
+                            {currentPosition.map((position, id) =>
                                 < tr key={id}>
                                     <td align="left"><Link to={`/positions/${position.id}`}>{position.name}</Link></td>
                                 </tr>)}
                         </tbody>
                     </table>
                 </div>
+                < Pagination itemsPerPage={itemsPerPage} totalItems={positions.length} onPageChange={page => setCurrentPage(page)} />
             </div>
         </div>
     )
