@@ -52,7 +52,7 @@ const PositionListPageComponent = ({ positions, setPositions }) => {
                         </tbody>
                     </table>
                 </div>
-                < Pagination itemsPerPage={itemsPerPage} totalItems={positions.length} onPageChange={page => setCurrentPage(page)} />
+                < Pagination itemsPerPage={itemsPerPage} totalItems={positions.length} onPageChange={page => setCurrentPage(page)} currentPage={currentPage} />
             </div>
         </div>
     )

@@ -52,7 +52,7 @@ const DepartmentListPageComponent = ({ departments, setDepartments }) => {
                         </tbody>
                     </table>
                 </div>
-                < Pagination itemsPerPage={itemsPerPage} totalItems={departments.length} onPageChange={page => setCurrentPage(page)} />
+                < Pagination itemsPerPage={itemsPerPage} totalItems={departments.length} onPageChange={page => setCurrentPage(page)} currentPage={currentPage} />
             </div>
         </div>
     )

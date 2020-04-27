@@ -4,10 +4,10 @@ const initialState = {
 
 export const departmentReducer = (state = initialState, action) => {
     switch (action.type) {
-        case 'SET_DEPARTMENT':
+        case 'SET_DEPARTMENTS':
             return {
                 ...state,
-                list: action.departmens
+                list: action.departments
             }
         default: return state
     }

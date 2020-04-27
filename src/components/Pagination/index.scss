@@ -23,5 +23,9 @@
             background-color: #ddd;
         }
     }
-
 }
+
+.pagination a.active {
+    background-color: #FF6800;
+    color: white;
+  }

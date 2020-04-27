@@ -88,7 +88,7 @@ const UserListPageComponent = ({ users, setUsers }) => {
                         </tbody>
                     </table>
                 </div>
-                < Pagination itemsPerPage={itemsPerPage} totalItems={users.length} onPageChange={page => setCurrentPage(page)} />
+                < Pagination itemsPerPage={itemsPerPage} totalItems={users.length} onPageChange={page => setCurrentPage(page)} currentPage={currentPage} />
             </div>
         </div >
     );

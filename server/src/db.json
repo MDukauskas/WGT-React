@@ -115,31 +115,11 @@
     },
     {
       "name": "Stage",
-      "id": 9
-    },
-    {
-      "name": "Stage",
-      "id": 10
-    },
-    {
-      "name": "Stage",
       "id": 11
     },
     {
       "name": "Stage",
-      "id": 12
-    },
-    {
-      "name": "Stage",
-      "id": 13
-    },
-    {
-      "name": "Stage",
       "id": 14
-    },
-    {
-      "name": "Stage",
-      "id": 15
     },
     {
       "name": "Sales",
@@ -148,6 +128,38 @@
     {
       "name": "DPC",
       "id": 17
+    },
+    {
+      "name": "DPC",
+      "id": 18
+    },
+    {
+      "name": "WordPress",
+      "id": 19
+    },
+    {
+      "name": "WordPress",
+      "id": 20
+    },
+    {
+      "name": "WordPress",
+      "id": 21
+    },
+    {
+      "name": "WordPress",
+      "id": 22
+    },
+    {
+      "name": "WordPress",
+      "id": 23
+    },
+    {
+      "name": "WordPress",
+      "id": 24
+    },
+    {
+      "name": "WordPress",
+      "id": 25
     }
   ],
   "position": [
