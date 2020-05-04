@@ -28,4 +28,8 @@
 .pagination a.active {
     background-color: #FF6800;
     color: white;
+
+    &:hover {
+        color: white;
+    }
   }
