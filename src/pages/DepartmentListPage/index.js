@@ -2,24 +2,16 @@ import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { Button, Menu, Pagination } from '../../components'
 import './index.scss'
-import { makeRequest } from '../../Services'
 import { connect } from 'react-redux'
-import { getDepartmentsList, setDepartments } from '../../store'
+import { getDepartmentsList, getDepartmentsLoading, fetchDepartments } from '../../store'
 
-const DepartmentListPageComponent = ({ departments, setDepartments }) => {
-
-    const [loading, setLoadoing] = useState(false);
+const DepartmentListPageComponent = ({ departments, fetchDepartments, isLoading }) => {
     const [currentPage, setCurrentPage] = useState(1);
-    const [itemsPerPage] = useState(5);
+    const itemsPerPage = 5;
 
     useEffect(() => {
-        setLoadoing(true)
-        makeRequest('/department')
-            .then(data => {
-                setDepartments(data)
-                setLoadoing(false)
-            })
-    }, [setDepartments])
+        fetchDepartments()
+    }, [])
 
     const indexOfLastUser = currentPage * itemsPerPage
     const indexOfFirstUser = indexOfLastUser - itemsPerPage
@@ -36,9 +28,10 @@ const DepartmentListPageComponent = ({ departments, setDepartments }) => {
                 <div className="rectangle"><div className="rectangle_orange"></div></div>
 
                 <div className="content_body">
-                    <p>Loading...</p>
+                    {isLoading && <p>Loading...</p>}
                     <p>There are no data to show currently. <span className="content_body--orange"> Create new department</span></p>
-                    <table className="columns_header">
+
+                    {!isLoading && <table className="columns_header">
                         <thead>
                             <tr>
                                 <th align="left">Department name</th>
@@ -50,7 +43,7 @@ const DepartmentListPageComponent = ({ departments, setDepartments }) => {
                                     <td align="left"><Link to={`/departments/${department.id}`}>{department.name}</Link></td>
                                 </tr>)}
                         </tbody>
-                    </table>
+                    </table>}
                 </div>
                 < Pagination itemsPerPage={itemsPerPage} totalItems={departments.length} onPageChange={page => setCurrentPage(page)} currentPage={currentPage} />
             </div>
@@ -59,11 +52,12 @@ const DepartmentListPageComponent = ({ departments, setDepartments }) => {
 }
 
 const mapStateToProps = (state) => ({
-    departments: getDepartmentsList(state)
+    departments: getDepartmentsList(state),
+    isLoading: getDepartmentsLoading(state)
 })
 
 const mapDispatchToProps = {
-    setDepartments
+    fetchDepartments,
 }
 
 export const DepartmentListPage = connect(mapStateToProps, mapDispatchToProps)(DepartmentListPageComponent)

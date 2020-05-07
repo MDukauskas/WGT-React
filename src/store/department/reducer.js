@@ -1,5 +1,6 @@
 const initialState = {
     list: [],
+    loading: false
 }
 
 export const departmentReducer = (state = initialState, action) => {
@@ -8,6 +9,11 @@ export const departmentReducer = (state = initialState, action) => {
             return {
                 ...state,
                 list: action.departments
+            }
+        case 'SET_DEPARTMENTS_LOADING':
+            return {
+                ...state,
+                loading: action.isLoading
             }
         default: return state
     }

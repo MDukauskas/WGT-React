@@ -7,11 +7,12 @@ import {
 import { ComponentsPage, LoginPage, UserListPage, UserNewPage, DepartmentListPage, DepartmentNewPage, PositionListPage, PositionsNewPage } from './pages';
 import './App.scss';
 import { Provider } from 'react-redux'
-import { createStore } from "redux";
+import { createStore, applyMiddleware } from "redux";
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { rootReducer } from './store/rootReducer'
+import thunk from 'redux-thunk'
 
-const store = createStore(rootReducer, composeWithDevTools())
+const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)))
 
 function App() {
 

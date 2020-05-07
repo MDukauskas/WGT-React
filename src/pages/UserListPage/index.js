@@ -1,18 +1,25 @@
 import React, { useState, useEffect } from 'react'
-import { Button, Menu, Pagination } from '../../components'
+import { Button, Menu, Pagination, UserItem } from '../../components'
 import './index.scss'
 // import vector1black from '../../assets/vector1black.svg';
 import { Link } from 'react-router-dom'
 import { makeRequest } from '../../Services'
 import { connect } from 'react-redux'
-import { getUsersList, setUsers } from '../../store'
+import { getUsersList, setUsers, setDepartments, setPositions } from '../../store'
 
+// const UserPageExample = ({ users, loading }) => (
+//     <Page>
+//         <SideMenu />
+//         <MainContent>
+//             <PageHeader header="Users" />
+//             <LoadingBar loading={loading} />
+//             <DataTable date={users} />
+//             <Pagination />
+//         </MainContent>
+//     </Page>
+// )
 
-const UserListPageComponent = ({ users, setUsers }) => {
-
-    const [positions, setPositions] = useState([])
-    const [departments, setDepartments] = useState([])
-
+const UserListPageComponent = ({ users, setUsers, setDepartments, setPositions }) => {
     const [loading, setLoadoing] = useState(false);
     const [currentPage, setCurrentPage] = useState(1);
     const [itemsPerPage] = useState(5);
@@ -59,6 +66,14 @@ const UserListPageComponent = ({ users, setUsers }) => {
                 <div className="content-body">
                     <p>Loading...</p>
                     <p>There are no data to show currently. <span className="content-body--orange"> Create new user</span></p>
+                    {/* <Table headers={[
+                        'Name',
+                        'Surname',
+                        'Photo',
+                        'Comments',
+                        'Department',
+                        'Position'
+                    ]} data={users} render={(item) => (<UserItem user={item}/>)} /> */}
                     <table className="columns_header">
                         <thead>
                             <tr>
@@ -71,20 +86,7 @@ const UserListPageComponent = ({ users, setUsers }) => {
                             </tr>
                         </thead>
                         <tbody>
-                            {currentUser.map((user, id) => {
-                                const position = positions.find(position => position.id === user.positionId)
-                                const department = departments.find(department => department.id === user.departmentId)
-                                return (
-                                    <tr key={id}>
-                                        <td><Link to={`/users/${user.id}`}>{user.name}</Link></td>
-                                        <td>{user.surname}</td>
-                                        <td> <img src={user.photo} alt="vector1black" />{}</td>
-                                        <td>{user.comment}</td>
-                                        <td>{department && department.name}</td>
-                                        <td>{position && position.name}</td>
-                                    </tr>
-                                )
-                            })}
+                            {currentUser.map((user, id) => <UserItem user={user} />)}
                         </tbody>
                     </table>
                 </div>
@@ -99,7 +101,9 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = {
-    setUsers
+    setUsers,
+    setDepartments,
+    setPositions,
 }
 
 export const UserListPage = connect(mapStateToProps, mapDispatchToProps)(UserListPageComponent)
