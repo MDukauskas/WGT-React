@@ -9,6 +9,11 @@ export const positionReducer = (state = initialState, action) => {
                 ...state,
                 list: action.positions
             }
+        case 'SET_POSITIONS_LOADING':
+            return {
+                ...state,
+                loading: action.isLoading
+            }
         default: return state
     }
 }

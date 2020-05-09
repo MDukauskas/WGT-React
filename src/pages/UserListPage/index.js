@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react'
-import { Button, Menu, Pagination, UserItem } from '../../components'
+import { Button, Menu, Pagination, UserItem, Loading } from '../../components'
 import './index.scss'
 // import vector1black from '../../assets/vector1black.svg';
 import { Link } from 'react-router-dom'
 import { makeRequest } from '../../Services'
 import { connect } from 'react-redux'
-import { getUsersList, setUsers, setDepartments, setPositions } from '../../store'
+import { getUsersList, setDepartments, setPositions, getUsersLoading, fetchUsers } from '../../store'
 
 // const UserPageExample = ({ users, loading }) => (
 //     <Page>
@@ -19,19 +19,13 @@ import { getUsersList, setUsers, setDepartments, setPositions } from '../../stor
 //     </Page>
 // )
 
-const UserListPageComponent = ({ users, setUsers, setDepartments, setPositions }) => {
-    const [loading, setLoadoing] = useState(false);
+const UserListPageComponent = ({ users, setUsers, setDepartments, setPositions, fetchUsers, isLoading }) => {
     const [currentPage, setCurrentPage] = useState(1);
     const [itemsPerPage] = useState(5);
 
     useEffect(() => {
-        setLoadoing(true)
-        makeRequest('/user')
-            .then(data => {
-                setUsers(data)
-                setLoadoing(false)
-            })
-    }, [setUsers])
+        fetchUsers()
+    }, [])
 
 
     useEffect(() => {
@@ -61,10 +55,11 @@ const UserListPageComponent = ({ users, setUsers, setDepartments, setPositions }
                     <p>Users</p>
                     <Link to="/users/new"><Button primary> New User</Button></Link>
                 </div>
-                <div className="rectangle"><div className="rectangle-orange"></div></div>
 
                 <div className="content-body">
-                    <p>Loading...</p>
+                    {
+                        isLoading && <Loading />
+                    }
                     <p>There are no data to show currently. <span className="content-body--orange"> Create new user</span></p>
                     {/* <Table headers={[
                         'Name',
@@ -97,11 +92,12 @@ const UserListPageComponent = ({ users, setUsers, setDepartments, setPositions }
 }
 
 const mapStateToProps = (state) => ({
-    users: getUsersList(state)
+    users: getUsersList(state),
+    isLoading: getUsersLoading(state)
 })
 
 const mapDispatchToProps = {
-    setUsers,
+    fetchUsers,
     setDepartments,
     setPositions,
 }

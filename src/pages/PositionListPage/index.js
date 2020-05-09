@@ -1,25 +1,17 @@
 import React, { useState, useEffect } from 'react'
-import { Button, Menu, Pagination } from '../../components'
+import { Button, Menu, Pagination, Loading } from '../../components'
 import './index.scss'
 import { Link } from 'react-router-dom'
-import { makeRequest } from '../../Services'
 import { connect } from 'react-redux'
-import { getPositionsList, setPositions } from '../../store'
+import { getPositionsList, getPositionsLoading, fetchPositions } from '../../store'
 
-const PositionListPageComponent = ({ positions, setPositions }) => {
-
-    const [loading, setLoadoing] = useState(false);
+const PositionListPageComponent = ({ positions, fetchPositions, isLoading }) => {
     const [currentPage, setCurrentPage] = useState(1);
     const [itemsPerPage] = useState(5);
 
     useEffect(() => {
-        setLoadoing(true)
-        makeRequest('/position')
-            .then(data => {
-                setPositions(data)
-                setLoadoing(false)
-            })
-    }, [setPositions])
+        fetchPositions()
+    }, [])
 
     const indexOfLastUser = currentPage * itemsPerPage
     const indexOfFirstUser = indexOfLastUser - itemsPerPage
@@ -33,12 +25,13 @@ const PositionListPageComponent = ({ positions, setPositions }) => {
                     <p>Positions</p>
                     <Link to="/positions/new"><Button primary> New position</Button></Link>
                 </div>
-                <div className="rectangle"><div className="rectangle_orange"></div></div>
 
                 <div className="content_body">
-                    <p>Loading...</p>
-                    <p>There are no data to show currently. <span className="content_body--orange"> Create new department</span></p>
-                    <table className="columns_header">
+                    {
+                        isLoading && <Loading />
+                    }
+                    {positions.length === 0 ? <p>There are no data to show currently. <Link to="/positions/new"> Create new department</Link></p> : ""}
+                    {!isLoading && <table className="columns_header">
                         <thead>
                             <tr>
                                 <th align="left">Position name</th>
@@ -50,7 +43,7 @@ const PositionListPageComponent = ({ positions, setPositions }) => {
                                     <td align="left"><Link to={`/positions/${position.id}`}>{position.name}</Link></td>
                                 </tr>)}
                         </tbody>
-                    </table>
+                    </table>}
                 </div>
                 < Pagination itemsPerPage={itemsPerPage} totalItems={positions.length} onPageChange={page => setCurrentPage(page)} currentPage={currentPage} />
             </div>
@@ -59,11 +52,12 @@ const PositionListPageComponent = ({ positions, setPositions }) => {
 }
 
 const mapStateToProps = (state) => ({
-    positions: getPositionsList(state)
+    positions: getPositionsList(state),
+    isLoading: getPositionsLoading(state)
 })
 
 const mapDispatchToProps = {
-    setPositions
+    fetchPositions,
 }
 
 export const PositionListPage = connect(mapStateToProps, mapDispatchToProps)(PositionListPageComponent)

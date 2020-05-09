@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { Button, Menu, Pagination } from '../../components'
+import { Button, Menu, Pagination, Loading } from '../../components'
 import './index.scss'
 import { connect } from 'react-redux'
 import { getDepartmentsList, getDepartmentsLoading, fetchDepartments } from '../../store'
@@ -25,10 +25,11 @@ const DepartmentListPageComponent = ({ departments, fetchDepartments, isLoading 
                     <p>Departments</p>
                     <Link to="/departments/new"><Button primary> New department</Button></Link>
                 </div>
-                <div className="rectangle"><div className="rectangle_orange"></div></div>
 
                 <div className="content_body">
-                    {isLoading && <p>Loading...</p>}
+                    {
+                        isLoading && <Loading />
+                    }
                     <p>There are no data to show currently. <span className="content_body--orange"> Create new department</span></p>
 
                     {!isLoading && <table className="columns_header">

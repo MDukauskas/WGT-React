@@ -164,32 +164,28 @@
   ],
   "position": [
     {
-      "id": 1,
-      "name": "Developer"
+      "name": "Front end",
+      "id": 1
     },
     {
       "name": "Front end developer",
+      "id": 2
+    },
+    {
+      "name": "Front end",
       "id": 3
     },
     {
-      "name": "Front end developer12",
+      "name": "Front end",
+      "id": 4
+    },
+    {
+      "name": "Front end",
       "id": 5
     },
     {
-      "name": "Front end developer",
+      "name": "Front end",
       "id": 6
-    },
-    {
-      "name": "Front end developer",
-      "id": 7
-    },
-    {
-      "name": "Front end developer1",
-      "id": 8
-    },
-    {
-      "name": "Sales operation specialist",
-      "id": 9
     }
   ]
 }

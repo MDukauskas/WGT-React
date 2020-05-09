@@ -22,17 +22,6 @@
             }
         }
     }
-    .rectangle {
-        width: 100%;
-        height: 6px;
-        background-color: #E6E6E6;
-    }
-
-    .rectangle_orange {
-        width: 90%;
-        height: 6px;
-        background-color: #FF6800;
-    }
     
     .content_body {
         display: flex;
@@ -40,8 +29,9 @@
         flex-direction: column;
         justify-content: left;
 
-        .content_body--orange {
+        a {
             color: #FF6800;
+            text-decoration: none;
         }
 
         .columns_header {
