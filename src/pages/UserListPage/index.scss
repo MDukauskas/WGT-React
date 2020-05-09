@@ -40,20 +40,15 @@
         flex-direction: column;
         justify-content: left;
 
-        .content-body--orange {
-            color: #FF6800;
+        a {
+            color: #4D4D4D;;
+            text-decoration: none;
         }
 
         img {
             border: 1px solid #4D4D4D;
             border-radius: 50px;
             padding: 3px;
-        }
-
-        .columns_header {
-            td {
-                text-align: center;
-            }
         }
 
         .spacer {

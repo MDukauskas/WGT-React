@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { Button, Menu, Pagination, Loading } from '../../components'
+import { Button, Menu, Pagination, Loading, Table, DepartmentItem } from '../../components'
 import './index.scss'
 import { connect } from 'react-redux'
 import { getDepartmentsList, getDepartmentsLoading, fetchDepartments } from '../../store'
@@ -30,9 +30,9 @@ const DepartmentListPageComponent = ({ departments, fetchDepartments, isLoading 
                     {
                         isLoading && <Loading />
                     }
-                    <p>There are no data to show currently. <span className="content_body--orange"> Create new department</span></p>
+                    {departments.length === 0 ? <p>There are no data to show currently. <Link to="/departments/new"> Create new department</Link></p> : ""}
 
-                    {!isLoading && <table className="columns_header">
+                    {/* {!isLoading && <table className="columns_header">
                         <thead>
                             <tr>
                                 <th align="left">Department name</th>
@@ -40,11 +40,14 @@ const DepartmentListPageComponent = ({ departments, fetchDepartments, isLoading 
                         </thead>
                         <tbody>
                             {currentDepartment.map((department, id) =>
-                                < tr key={id}>
-                                    <td align="left"><Link to={`/departments/${department.id}`}>{department.name}</Link></td>
-                                </tr>)}
+                                <DepartmentItem department={department} />)}
                         </tbody>
-                    </table>}
+                    </table>} */}
+                    {!isLoading &&
+                        <Table headers={[
+                            'Name',
+                        ]} data={currentDepartment} render={(item) => (<DepartmentItem department={item} />)} />
+                    }
                 </div>
                 < Pagination itemsPerPage={itemsPerPage} totalItems={departments.length} onPageChange={page => setCurrentPage(page)} currentPage={currentPage} />
             </div>

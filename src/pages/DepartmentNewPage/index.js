@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { InputGroup, Card, Button, Menu, Tabs, Notification } from '../../components'
+import { InputGroup, Card, Button, Menu, Tabs, Notification, Table, UserItem } from '../../components'
 import './index.scss'
 import { useParams, Link } from 'react-router-dom';
 import { makeRequest } from '../../Services'
@@ -71,27 +71,14 @@ export const DepartmentNewPage = () => {
     </div >
 
     const content2 = <div className="userside1">
-        <table className="columns_header">
-            <tbody>
-                <tr>
-                    <th>Photo</th>
-                    <th>Name</th>
-                    <th>Surname</th>
-                    <th>Position</th>
-                    <th>Department</th>
-                    <th>Comments</th>
-                </tr>
-                {users.map((user, id) =>
-                    < tr key={id}>
-                        <td><Link to={`/users/${user.id}`}>{user.name}</Link></td>
-                        <td>{user.surname}</td>
-                        <td> <img src={user.photo} alt="vector1black" />{}</td>
-                        <td>{user.comment}</td>
-                        <td>{user.departmentId}</td>
-                        <td>{user.positionId}</td>
-                    </tr>)}
-            </tbody>
-        </table>
+        <Table headers={[
+            'Name',
+            'Surname',
+            'Photo',
+            'Comments',
+            'Department',
+            'Position'
+        ]} data={users} render={(item) => (<UserItem user={item} />)} />
     </div>
 
     return (

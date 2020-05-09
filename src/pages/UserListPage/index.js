@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Button, Menu, Pagination, UserItem, Loading } from '../../components'
+import { Button, Menu, Pagination, UserItem, Loading, Table } from '../../components'
 import './index.scss'
 // import vector1black from '../../assets/vector1black.svg';
 import { Link } from 'react-router-dom'
@@ -60,30 +60,17 @@ const UserListPageComponent = ({ users, setUsers, setDepartments, setPositions, 
                     {
                         isLoading && <Loading />
                     }
-                    <p>There are no data to show currently. <span className="content-body--orange"> Create new user</span></p>
-                    {/* <Table headers={[
-                        'Name',
-                        'Surname',
-                        'Photo',
-                        'Comments',
-                        'Department',
-                        'Position'
-                    ]} data={users} render={(item) => (<UserItem user={item}/>)} /> */}
-                    <table className="columns_header">
-                        <thead>
-                            <tr>
-                                <th>Name</th>
-                                <th>Surname</th>
-                                <th>Photo</th>
-                                <th>Comments</th>
-                                <th>Department</th>
-                                <th>Position</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {currentUser.map((user, id) => <UserItem user={user} />)}
-                        </tbody>
-                    </table>
+                    {users.length === 0 ? <p>There are no data to show currently. <Link to="/users/new"> Create new user</Link></p> : ""}
+                    {!isLoading &&
+                        <Table headers={[
+                            'Name',
+                            'Surname',
+                            'Photo',
+                            'Comments',
+                            'Department',
+                            'Position'
+                        ]} data={currentUser} render={(item) => (<UserItem user={item} />)} />
+                    }
                 </div>
                 < Pagination itemsPerPage={itemsPerPage} totalItems={users.length} onPageChange={page => setCurrentPage(page)} currentPage={currentPage} />
             </div>

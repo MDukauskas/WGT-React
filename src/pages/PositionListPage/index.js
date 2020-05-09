@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Button, Menu, Pagination, Loading } from '../../components'
+import { Button, Menu, Pagination, Loading, Table, PositionItem } from '../../components'
 import './index.scss'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
@@ -31,7 +31,7 @@ const PositionListPageComponent = ({ positions, fetchPositions, isLoading }) => 
                         isLoading && <Loading />
                     }
                     {positions.length === 0 ? <p>There are no data to show currently. <Link to="/positions/new"> Create new department</Link></p> : ""}
-                    {!isLoading && <table className="columns_header">
+                    {/* {!isLoading && <table className="columns_header">
                         <thead>
                             <tr>
                                 <th align="left">Position name</th>
@@ -43,7 +43,12 @@ const PositionListPageComponent = ({ positions, fetchPositions, isLoading }) => 
                                     <td align="left"><Link to={`/positions/${position.id}`}>{position.name}</Link></td>
                                 </tr>)}
                         </tbody>
-                    </table>}
+                    </table>} */}
+                    {!isLoading &&
+                        <Table headers={[
+                            'Name',
+                        ]} data={currentPosition} render={(item) => (<PositionItem position={item} />)} />
+                    }
                 </div>
                 < Pagination itemsPerPage={itemsPerPage} totalItems={positions.length} onPageChange={page => setCurrentPage(page)} currentPage={currentPage} />
             </div>

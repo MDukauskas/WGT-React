@@ -94,6 +94,14 @@
       "id": 16,
       "comment": "comments",
       "departmentId": 8
+    },
+    {
+      "name": "Ieva",
+      "surname": "Kav",
+      "photo": "",
+      "id": 17,
+      "departmentId": 11,
+      "positionId": 1
     }
   ],
   "department": [
