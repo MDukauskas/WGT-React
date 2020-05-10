@@ -3,18 +3,23 @@ import { InputGroup, Card, Button, Menu, Tabs, Notification, Table, UserItem } f
 import './index.scss'
 import { useParams, Link } from 'react-router-dom';
 import { makeRequest } from '../../Services'
+import { connect } from 'react-redux'
+import { getUsersList, fetchUsers } from '../../store'
 
 import saveIcon from '../../assets/save.svg';
+import { useCrud } from '../../Services';
 
 // import vector1black from '../../assets/vector1black.svg';
 
-export const DepartmentNewPage = () => {
+export const DepartmentNewPageComponent = ({ users, fetchUsers }) => {
     const { id } = useParams()
 
     const [department, setDepartment] = useState({})
-    const [showNotifications, setShowNotifications] = useState(false)
-    const [users, setusers] = useState([])
     const [showDelete, setShowDelete] = useState(false)
+
+    const departmentUsers = users.filter(x => +x.departmentId === +id)
+
+    const { create, update, remove, showNotifications } = useCrud(id, 'department', department)
 
     useEffect(() => {
         if (id === "new") {
@@ -27,39 +32,15 @@ export const DepartmentNewPage = () => {
     }, [id])
 
     useEffect(() => {
-        makeRequest('/user')
-            .then(data => {
-                setusers(data)
-            })
+        fetchUsers()
     }, [])
 
     const save = () => {
         if (id === 'new') {
-            add()
+            create()
         } else {
             update()
         }
-    }
-
-    const add = () => {
-        makeRequest('/department', { method: 'POST', body: JSON.stringify(department) }).then(() => {
-            setShowNotifications(true)
-            setTimeout(() => { setShowNotifications(false) }, 5000)
-        })
-    }
-
-    const update = () => {
-        makeRequest(`/department/${id}`, { method: 'PUT', body: JSON.stringify(department) }).then(() => {
-            setShowNotifications(true)
-            setTimeout(() => { setShowNotifications(false) }, 5000)
-        })
-    }
-
-
-    function remove() {
-        makeRequest(`/department/${id}`, { method: 'DELETE' }).then(() => {
-            window.location.href = '/departments'
-        })
     }
 
     const content1 = <div className="newdepartment_content">
@@ -78,7 +59,7 @@ export const DepartmentNewPage = () => {
             'Comments',
             'Department',
             'Position'
-        ]} data={users} render={(item) => (<UserItem user={item} />)} />
+        ]} data={departmentUsers} render={(item) => (<UserItem user={item} />)} />
     </div>
 
     return (
@@ -129,3 +110,13 @@ export const DepartmentNewPage = () => {
         </div >
     )
 }
+
+const mapStateToProps = (state) => ({
+    users: getUsersList(state),
+})
+
+const mapDispatchToProps = {
+    fetchUsers,
+}
+
+export const DepartmentNewPage = connect(mapStateToProps, mapDispatchToProps)(DepartmentNewPageComponent)

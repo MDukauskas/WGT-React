@@ -1,9 +1,11 @@
 .columns_header {
     width: 100%;
+    text-align: left;
 }
 
 .columns_header {
     td {
-        text-align: center;
+        text-align: left;
+        width: 16%;
     }
 }

@@ -6,14 +6,16 @@ import { makeRequest } from '../../Services'
 import saveIcon from '../../assets/save.svg';
 import newuser from '../../assets/newuser.svg';
 import { useParams, Link } from 'react-router-dom';
+import { useCrud } from '../../Services';
 
 export const UserNewPage = () => {
     const { id } = useParams()
 
     const [user, setuser] = useState({})
-    const [showNotifications, setShowNotifications] = useState(false)
     const [positions, setPositions] = useState([])
     const [departments, setDepartments] = useState([])
+
+    const { create, update, remove, showNotifications } = useCrud(id, 'user', user)
 
     useEffect(() => {
         if (id === "new") {
@@ -47,30 +49,10 @@ export const UserNewPage = () => {
 
     const save = () => {
         if (id === 'new') {
-            add()
+            create()
         } else {
             update()
         }
-    }
-
-    const add = () => {
-        makeRequest('/user', { method: 'POST', body: JSON.stringify(user) }).then(() => {
-            setShowNotifications(true)
-            setTimeout(() => { setShowNotifications(false) }, 5000)
-        })
-    }
-
-    const update = () => {
-        makeRequest(`/user/${id}`, { method: 'PUT', body: JSON.stringify(user) }).then(() => {
-            setShowNotifications(true)
-            setTimeout(() => { setShowNotifications(false) }, 5000)
-        })
-    }
-
-    function remove() {
-        makeRequest(`/user/${id}`, { method: 'DELETE' }).then(() => {
-            window.location.href = '/users'
-        })
     }
 
     const [showDelete, setShowDelete] = useState(false)

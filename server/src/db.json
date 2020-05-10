@@ -39,7 +39,7 @@
       "id": 8,
       "departmentId": 2,
       "positionId": 1,
-      "comment": "Ieva111r"
+      "comment": "Ieva111"
     },
     {
       "name": "Ieva",
@@ -102,6 +102,15 @@
       "id": 17,
       "departmentId": 11,
       "positionId": 1
+    },
+    {
+      "name": "Agne",
+      "surname": "Klem",
+      "photo": "",
+      "id": 18,
+      "departmentId": 22,
+      "positionId": 2,
+      "comment": "The main information is already added"
     }
   ],
   "department": [
@@ -168,6 +177,13 @@
     {
       "name": "WordPress",
       "id": 25
+    },
+    {
+      "name": "sdfsdfskhjhjh",
+      "id": 26
+    },
+    {
+      "id": 27
     }
   ],
   "position": [
@@ -186,10 +202,6 @@
     {
       "name": "Front end",
       "id": 4
-    },
-    {
-      "name": "Front end",
-      "id": 5
     },
     {
       "name": "Front end",

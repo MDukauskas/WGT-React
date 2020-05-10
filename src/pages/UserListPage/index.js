@@ -19,7 +19,9 @@ import { getUsersList, setDepartments, setPositions, getUsersLoading, fetchUsers
 //     </Page>
 // )
 
-const UserListPageComponent = ({ users, setUsers, setDepartments, setPositions, fetchUsers, isLoading }) => {
+// not show loading
+
+const UserListPageComponent = ({ users, setDepartments, setPositions, fetchUsers, isLoading }) => {
     const [currentPage, setCurrentPage] = useState(1);
     const [itemsPerPage] = useState(5);
 
@@ -57,18 +59,18 @@ const UserListPageComponent = ({ users, setUsers, setDepartments, setPositions, 
                 </div>
 
                 <div className="content-body">
+                    {users.length === 0 ? <p>There are no data to show currently. <Link to="/users/new"> Create new user</Link></p> : ""}
                     {
                         isLoading && <Loading />
                     }
-                    {users.length === 0 ? <p>There are no data to show currently. <Link to="/users/new"> Create new user</Link></p> : ""}
                     {!isLoading &&
                         <Table headers={[
+                            'Photo',
                             'Name',
                             'Surname',
-                            'Photo',
-                            'Comments',
+                            'Position',
                             'Department',
-                            'Position'
+                            'Comments'
                         ]} data={currentUser} render={(item) => (<UserItem user={item} />)} />
                     }
                 </div>

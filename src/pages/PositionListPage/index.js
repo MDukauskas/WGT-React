@@ -27,23 +27,10 @@ const PositionListPageComponent = ({ positions, fetchPositions, isLoading }) => 
                 </div>
 
                 <div className="content_body">
+                    {positions.length === 0 ? <p>There are no data to show currently. <Link to="/positions/new"> Create new department</Link></p> : ""}
                     {
                         isLoading && <Loading />
                     }
-                    {positions.length === 0 ? <p>There are no data to show currently. <Link to="/positions/new"> Create new department</Link></p> : ""}
-                    {/* {!isLoading && <table className="columns_header">
-                        <thead>
-                            <tr>
-                                <th align="left">Position name</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {currentPosition.map((position, id) =>
-                                < tr key={id}>
-                                    <td align="left"><Link to={`/positions/${position.id}`}>{position.name}</Link></td>
-                                </tr>)}
-                        </tbody>
-                    </table>} */}
                     {!isLoading &&
                         <Table headers={[
                             'Name',

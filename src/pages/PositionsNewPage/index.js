@@ -1,19 +1,23 @@
 import React, { useState, useEffect } from 'react'
-import { InputGroup, Card, Button, Menu, Tabs, Notification } from '../../components'
+import { InputGroup, Card, Button, Menu, Tabs, Notification, Table, UserItem } from '../../components'
 import './index.scss'
 import { useParams, Link } from 'react-router-dom';
 
 import saveIcon from '../../assets/save.svg';
 // import vector1black from '../../assets/vector1black.svg';
 import { makeRequest } from '../../Services'
+import { connect } from 'react-redux'
+import { getUsersList, fetchUsers } from '../../store'
+import { useCrud } from '../../Services';
 
-export const PositionsNewPage = () => {
+export const PositionsNewPageComponent = ({ users, fetchUsers }) => {
     const { id } = useParams()
 
     const [position, setPosition] = useState({})
-    const [showNotifications, setShowNotifications] = useState(false)
-    const [users, setusers] = useState([])
     const [showDelete, setShowDelete] = useState(false)
+
+    const positionUsers = users.filter(x => +x.positionId === +id)
+    const { create, update, remove, showNotifications } = useCrud(id, 'position', position)
 
     useEffect(() => {
         if (id === "new") {
@@ -27,38 +31,15 @@ export const PositionsNewPage = () => {
 
 
     useEffect(() => {
-        makeRequest('/user')
-            .then(data => {
-                setusers(data)
-            })
+        fetchUsers()
     }, [])
 
     const save = () => {
         if (id === 'new') {
-            add()
+            create()
         } else {
             update()
         }
-    }
-
-    const add = () => {
-        makeRequest('/position', { method: 'POST', body: JSON.stringify(position) }).then(() => {
-            setShowNotifications(true)
-            setTimeout(() => { setShowNotifications(false) }, 5000)
-        })
-    }
-
-    const update = () => {
-        makeRequest(`/position/${id}`, { method: 'PUT', body: JSON.stringify(position) }).then(() => {
-            setShowNotifications(true)
-            setTimeout(() => { setShowNotifications(false) }, 5000)
-        })
-    }
-
-    function remove() {
-        makeRequest(`/position/${id}`, { method: 'DELETE' }).then(() => {
-            window.location.href = '/positions'
-        })
     }
 
 
@@ -71,27 +52,14 @@ export const PositionsNewPage = () => {
     </div >
 
     const content2 = <div className="userside1">
-        <table className="columns_header">
-            <tbody>
-                <tr>
-                    <th>Photo</th>
-                    <th>Name</th>
-                    <th>Surname</th>
-                    <th>Position</th>
-                    <th>Department</th>
-                    <th>Comments</th>
-                </tr>
-                {users.map((user, id) =>
-                    < tr key={id}>
-                        <td><Link to={`/users/${user.id}`}>{user.name}</Link></td>
-                        <td>{user.surname}</td>
-                        <td> <img src={user.photo} alt="vector1black" />{}</td>
-                        <td>{user.comment}</td>
-                        <td>{user.departmentId}</td>
-                        <td>{user.positionId}</td>
-                    </tr>)}
-            </tbody>
-        </table>
+        <Table headers={[
+            'Name',
+            'Surname',
+            'Photo',
+            'Comments',
+            'Department',
+            'Position'
+        ]} data={positionUsers} render={(item) => (<UserItem user={item} />)} />
     </div>
 
     return (
@@ -142,3 +110,13 @@ export const PositionsNewPage = () => {
         </div >
     )
 }
+
+const mapStateToProps = (state) => ({
+    users: getUsersList(state),
+})
+
+const mapDispatchToProps = {
+    fetchUsers,
+}
+
+export const PositionsNewPage = connect(mapStateToProps, mapDispatchToProps)(PositionsNewPageComponent)
