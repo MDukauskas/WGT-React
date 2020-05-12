@@ -7,7 +7,7 @@ import position from '../../assets/position.svg';
 import logout from '../../assets/logout.svg';
 
 
-export const Menu = (props) => {
+export const SideMenu = (props) => {
 
     function removeSesion() {
         localStorage.setItem('auth_key', '')

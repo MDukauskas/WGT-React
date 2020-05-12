@@ -1,27 +1,7 @@
 .userside {
     display: flex;
     width: 100%;
-
-    .content {
-        margin: 20px 40px;
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-    }
-
-    .content-header {
-        display: flex;
-        justify-content: space-between;
-        
-        p {
-            font-size: 36px;
-            line-height: 55px;
-        }
-
-        a {
-            text-decoration: none;
-        }
-    }
+    
     .rectangle {
         width: 100%;
         height: 6px;
@@ -32,27 +12,5 @@
         width: 90%;
         height: 6px;
         background-color: #FF6800;
-    }
-
-    .content-body {
-        display: flex;
-        flex-grow: 1;
-        flex-direction: column;
-        justify-content: left;
-
-        a {
-            color: #4D4D4D;;
-            text-decoration: none;
-        }
-
-        img {
-            border: 1px solid #4D4D4D;
-            border-radius: 50px;
-            padding: 3px;
-        }
-
-        .spacer {
-            flex-grow: 1;
-        }
     }
 }

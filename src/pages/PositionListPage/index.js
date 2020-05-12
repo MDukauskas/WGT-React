@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Button, Menu, Pagination, Loading, Table, PositionItem } from '../../components'
+import { Button, SideMenu, Pagination, LoadingBar, Table, PositionItem, PageHeader, DataTable, MainContent } from '../../components'
 import './index.scss'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
@@ -19,26 +19,24 @@ const PositionListPageComponent = ({ positions, fetchPositions, isLoading }) => 
 
     return (
         <div className="positions">
-            <Menu />
-            <div className="content">
-                <div className="content_header">
-                    <p>Positions</p>
+            <SideMenu />
+            <MainContent>
+                <PageHeader header="Positions">
                     <Link to="/positions/new"><Button primary> New position</Button></Link>
-                </div>
-
-                <div className="content_body">
+                </PageHeader>
+                <DataTable>
                     {positions.length === 0 ? <p>There are no data to show currently. <Link to="/positions/new"> Create new department</Link></p> : ""}
                     {
-                        isLoading && <Loading />
+                        isLoading && <LoadingBar />
                     }
                     {!isLoading &&
                         <Table headers={[
                             'Name',
                         ]} data={currentPosition} render={(item) => (<PositionItem position={item} />)} />
                     }
-                </div>
+                </DataTable>
                 < Pagination itemsPerPage={itemsPerPage} totalItems={positions.length} onPageChange={page => setCurrentPage(page)} currentPage={currentPage} />
-            </div>
+            </MainContent>
         </div>
     )
 }

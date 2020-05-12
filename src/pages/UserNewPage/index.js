@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { InputGroup, Button, Menu, Tabs, Card, Notification } from '../../components'
+import { InputGroup, Button, SideMenu, Tabs, Card, Notification, PageHeader } from '../../components'
 import './index.scss'
 import { makeRequest } from '../../Services'
 
@@ -9,8 +9,8 @@ import { useParams, Link } from 'react-router-dom';
 import { useCrud } from '../../Services';
 
 export const UserNewPage = () => {
-    const { id } = useParams()
 
+    const { id } = useParams()
     const [user, setuser] = useState({})
     const [positions, setPositions] = useState([])
     const [departments, setDepartments] = useState([])
@@ -95,13 +95,12 @@ export const UserNewPage = () => {
 
     return (
         <div className="newuser">
-            <Menu />
+            <SideMenu />
             {showDelete
                 ?
                 <div className="newuser_menu">
-                    <div className="newuser__header">
-                        <h2>{user.name}</h2>
-                    </div>
+                    <PageHeader header={user.name}>
+                    </PageHeader>
                     <div className="newuser__body">
                         <Card title={`Are you sure you want to delete user ${user.name} ?`}>
                             <div className="newuser__button">
@@ -113,10 +112,9 @@ export const UserNewPage = () => {
                 </div>
                 :
                 <div className="newuser_menu">
-                    <div className="newuser__header">
-                        {id === "new" ? <h2>New user</h2> : <h2>{user.name}</h2>}
+                    <PageHeader header={id === "new" ? 'New user' : user.name}>
                         <Button onClick={() => setShowDelete(true)}><img src={saveIcon} alt="save" /> Delete user</Button>
-                    </div>
+                    </PageHeader>
                     <Tabs tabs={[{
                         title: 'General information',
                         content: generalInformationTab,

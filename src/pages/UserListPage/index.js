@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Button, Menu, Pagination, UserItem, Loading, Table } from '../../components'
+import { Button, SideMenu, Pagination, UserItem, LoadingBar, Table, PageHeader, DataTable, MainContent } from '../../components'
 import './index.scss'
 // import vector1black from '../../assets/vector1black.svg';
 import { Link } from 'react-router-dom'
@@ -29,14 +29,12 @@ const UserListPageComponent = ({ users, setDepartments, setPositions, fetchUsers
         fetchUsers()
     }, [])
 
-
     useEffect(() => {
         makeRequest('/position')
             .then(data => {
                 setPositions(data)
             })
     }, [])
-
 
     useEffect(() => {
         makeRequest('/department')
@@ -51,17 +49,15 @@ const UserListPageComponent = ({ users, setDepartments, setPositions, fetchUsers
 
     return (
         <div className="userside">
-            <Menu />
-            <div className="content">
-                <div className="content-header">
-                    <p>Users</p>
+            <SideMenu />
+            <MainContent>
+                <PageHeader header="Users">
                     <Link to="/users/new"><Button primary> New User</Button></Link>
-                </div>
-
-                <div className="content-body">
+                </PageHeader>
+                <DataTable>
                     {users.length === 0 ? <p>There are no data to show currently. <Link to="/users/new"> Create new user</Link></p> : ""}
                     {
-                        isLoading && <Loading />
+                        isLoading && <LoadingBar />
                     }
                     {!isLoading &&
                         <Table headers={[
@@ -73,9 +69,9 @@ const UserListPageComponent = ({ users, setDepartments, setPositions, fetchUsers
                             'Comments'
                         ]} data={currentUser} render={(item) => (<UserItem user={item} />)} />
                     }
-                </div>
+                </DataTable>
                 < Pagination itemsPerPage={itemsPerPage} totalItems={users.length} onPageChange={page => setCurrentPage(page)} currentPage={currentPage} />
-            </div>
+            </MainContent>
         </div >
     );
 }

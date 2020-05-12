@@ -1,7 +1,7 @@
 import React from 'react'
 import './index.scss'
 
-export const Loading = () => {
+export const LoadingBar = () => {
     return (
         <div>
             <p>Loading...</p>

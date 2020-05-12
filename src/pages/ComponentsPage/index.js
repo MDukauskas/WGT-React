@@ -3,7 +3,7 @@ import React from 'react'
 import save from '../../assets/save.svg';
 import loading from '../../assets/loading.svg';
 
-import { Notification, Button, Card, InputGroup, Tabs, Menu, Pagination } from '../../components';
+import { Notification, Button, Card, InputGroup, Tabs, SideMenu, Pagination } from '../../components';
 import './index.scss'
 
 const tabs = [{
@@ -34,7 +34,7 @@ export const ComponentsPage = (props) => {
             <Card title="Pagination">
                 <Pagination />
             </Card>
-            <Menu />
+            <SideMenu />
         </div>
         <div className="column">
             <Card title="Buttons">

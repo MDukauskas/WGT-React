@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { InputGroup, Card, Button, Menu, Tabs, Notification, Table, UserItem } from '../../components'
+import { InputGroup, Card, Button, SideMenu, Tabs, Notification, Table, UserItem, PageHeader } from '../../components'
 import './index.scss'
 import { useParams, Link } from 'react-router-dom';
 
@@ -64,12 +64,11 @@ export const PositionsNewPageComponent = ({ users, fetchUsers }) => {
 
     return (
         <div className="newdepartment">
-            <Menu />
+            <SideMenu />
             {showDelete ?
                 <div className="newdepartment_menu">
-                    <div className="newdepartment__header">
-                        <h2>{position.name}</h2>
-                    </div>
+                    <PageHeader header={position.name}>
+                    </PageHeader>
                     <div className="newdepartment__body">
                         <Card title={`Are you sure you want to delete department ${position.name} ?`}>
                             <div className="newdepartment_content-button">
@@ -81,10 +80,9 @@ export const PositionsNewPageComponent = ({ users, fetchUsers }) => {
                 </div>
                 :
                 < div className="newdepartment_menu">
-                    <div className="newdepartment-header">
-                        {id === "new" ? <h2>New department</h2> : <h2>{position.name}</h2>}
+                    <PageHeader header={id === "new" ? "New Position" : position.name}>
                         <Button onClick={() => setShowDelete(true)}><img src={saveIcon} alt="save" /> Delete position</Button>
-                    </div>
+                    </PageHeader>
                     <div className="newdepartment-body">
                         {id === "new" ?
                             <Card title="General information" >{content1}</Card>
