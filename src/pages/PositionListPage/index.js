@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Button, SideMenu, Pagination, LoadingBar, Table, PositionItem, PageHeader, DataTable, MainContent } from '../../components'
-import './index.scss'
+import { Button, SideMenu, Pagination, LoadingBar, Table, PositionItem, PageHeader, DataTable, MainContent, Page } from '../../components'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { getPositionsList, getPositionsLoading, fetchPositions } from '../../store'
@@ -18,7 +17,7 @@ const PositionListPageComponent = ({ positions, fetchPositions, isLoading }) => 
     const currentPosition = positions.slice(indexOfFirstUser, indexOfLastUser)
 
     return (
-        <div className="positions">
+        <Page>
             <SideMenu />
             <MainContent>
                 <PageHeader header="Positions">
@@ -37,7 +36,7 @@ const PositionListPageComponent = ({ positions, fetchPositions, isLoading }) => 
                 </DataTable>
                 < Pagination itemsPerPage={itemsPerPage} totalItems={positions.length} onPageChange={page => setCurrentPage(page)} currentPage={currentPage} />
             </MainContent>
-        </div>
+        </Page>
     )
 }
 

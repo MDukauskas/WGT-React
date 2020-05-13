@@ -43,13 +43,6 @@
     },
     {
       "name": "Ieva",
-      "surname": "Ieva",
-      "photo": "",
-      "id": 10,
-      "departmentId": 2
-    },
-    {
-      "name": "Ieva",
       "surname": "Kava",
       "photo": "",
       "id": 11,
@@ -111,6 +104,15 @@
       "departmentId": 22,
       "positionId": 2,
       "comment": "The main information is already added"
+    },
+    {
+      "name": "Agne",
+      "surname": "Klem",
+      "photo": "",
+      "id": 19,
+      "departmentId": 17,
+      "positionId": 3,
+      "comment": "mmmmdmskj"
     }
   ],
   "department": [

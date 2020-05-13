@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { InputGroup, Button, SideMenu, Tabs, Card, Notification, PageHeader } from '../../components'
+import { InputGroup, Button, SideMenu, Tabs, Card, Notification, PageHeader, Page, MainContent, NotificationShow } from '../../components'
 import './index.scss'
 import { makeRequest } from '../../Services'
 
@@ -7,6 +7,18 @@ import saveIcon from '../../assets/save.svg';
 import newuser from '../../assets/newuser.svg';
 import { useParams, Link } from 'react-router-dom';
 import { useCrud } from '../../Services';
+
+// const UserPageExample = ({ users, loading }) => (
+//     <Page>
+//         <SideMenu />
+//         <MainContent>
+//             <PageHeader header="Users" />
+//             <LoadingBar loading={loading} />
+//             <DataTable date={users} />
+//             <Pagination />
+//         </MainContent>
+//     </Page>
+// )
 
 export const UserNewPage = () => {
 
@@ -94,11 +106,11 @@ export const UserNewPage = () => {
     </div>
 
     return (
-        <div className="newuser">
+        <Page>
             <SideMenu />
             {showDelete
                 ?
-                <div className="newuser_menu">
+                <MainContent>
                     <PageHeader header={user.name}>
                     </PageHeader>
                     <div className="newuser__body">
@@ -109,9 +121,9 @@ export const UserNewPage = () => {
                             </div>
                         </Card>
                     </div>
-                </div>
+                </MainContent>
                 :
-                <div className="newuser_menu">
+                <MainContent>
                     <PageHeader header={id === "new" ? 'New user' : user.name}>
                         <Button onClick={() => setShowDelete(true)}><img src={saveIcon} alt="save" /> Delete user</Button>
                     </PageHeader>
@@ -123,14 +135,14 @@ export const UserNewPage = () => {
                         content: commentTab,
                     }]}
                     />
-                </div>
+                </MainContent>
             }
             {
                 showNotifications &&
-                <div className="content-notification">
+                <NotificationShow>
                     <Notification type="success" > New user successfully saved</Notification>
-                </div>
+                </NotificationShow>
             }
-        </div >
+        </Page >
     )
 }

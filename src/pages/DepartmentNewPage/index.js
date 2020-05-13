@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { InputGroup, Card, Button, SideMenu, Tabs, Notification, Table, UserItem, PageHeader } from '../../components'
+import { InputGroup, Card, Button, SideMenu, Tabs, Notification, Table, UserItem, PageHeader, Page, MainContent, DataTable, NotificationShow } from '../../components'
 import './index.scss'
 import { useParams, Link } from 'react-router-dom';
 import { makeRequest } from '../../Services'
@@ -51,7 +51,7 @@ export const DepartmentNewPageComponent = ({ users, fetchUsers }) => {
         </div>
     </div >
 
-    const content2 = <div className="userside1">
+    const content2 = <DataTable>
         <Table headers={[
             'Name',
             'Surname',
@@ -60,13 +60,13 @@ export const DepartmentNewPageComponent = ({ users, fetchUsers }) => {
             'Department',
             'Position'
         ]} data={departmentUsers} render={(item) => (<UserItem user={item} />)} />
-    </div>
+    </DataTable>
 
     return (
-        <div className="newdepartment">
+        <Page>
             <SideMenu />
             {showDelete ?
-                <div className="newdepartment_menu">
+                <MainContent>
                     <PageHeader header={department.name}>
                     </PageHeader>
                     <div className="newdepartment__body">
@@ -77,9 +77,9 @@ export const DepartmentNewPageComponent = ({ users, fetchUsers }) => {
                             </div>
                         </Card>
                     </div>
-                </div>
+                </MainContent>
                 :
-                < div className="newdepartment_menu">
+                <MainContent>
                     <PageHeader header={id === "new" ? "New Department" : department.name}>
                         <Button onClick={() => setShowDelete(true)}><img src={saveIcon} alt="save" /> Delete department</Button>
                     </PageHeader>
@@ -97,15 +97,15 @@ export const DepartmentNewPageComponent = ({ users, fetchUsers }) => {
                             />
                         }
                     </div>
-                </div>
+                </MainContent>
             }
             {
                 showNotifications &&
-                <div className="content-notification">
+                <NotificationShow>
                     <Notification type="success" > Successfully saved</Notification>
-                </div>
+                </NotificationShow>
             }
-        </div >
+        </Page >
     )
 }
 

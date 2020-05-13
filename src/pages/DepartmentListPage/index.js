@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { Button, SideMenu, Pagination, LoadingBar, DepartmentItem, Table, PageHeader, DataTable, MainContent } from '../../components'
-import './index.scss'
+import { Button, SideMenu, Pagination, LoadingBar, DepartmentItem, Table, PageHeader, DataTable, MainContent, Page } from '../../components'
 import { connect } from 'react-redux'
 import { getDepartmentsList, getDepartmentsLoading, fetchDepartments } from '../../store'
 
@@ -18,7 +17,7 @@ const DepartmentListPageComponent = ({ departments, fetchDepartments, isLoading 
     const currentDepartment = departments.slice(indexOfFirstUser, indexOfLastUser)
 
     return (
-        <div className="departments">
+        <Page>
             <SideMenu />
             <MainContent>
                 <PageHeader header="Departments">
@@ -39,7 +38,7 @@ const DepartmentListPageComponent = ({ departments, fetchDepartments, isLoading 
                 </DataTable>
                 < Pagination itemsPerPage={itemsPerPage} totalItems={departments.length} onPageChange={page => setCurrentPage(page)} currentPage={currentPage} />
             </MainContent>
-        </div>
+        </Page>
     )
 }
 

@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react'
-import { InputGroup, Card, Button, SideMenu, Tabs, Notification, Table, UserItem, PageHeader } from '../../components'
+import { InputGroup, Card, Button, SideMenu, Tabs, Notification, Table, UserItem, PageHeader, Page, MainContent, DataTable, NotificationShow } from '../../components'
 import './index.scss'
 import { useParams, Link } from 'react-router-dom';
-
 import saveIcon from '../../assets/save.svg';
 // import vector1black from '../../assets/vector1black.svg';
 import { makeRequest } from '../../Services'
@@ -51,7 +50,7 @@ export const PositionsNewPageComponent = ({ users, fetchUsers }) => {
         </div>
     </div >
 
-    const content2 = <div className="userside1">
+    const content2 = <DataTable>
         <Table headers={[
             'Name',
             'Surname',
@@ -60,13 +59,13 @@ export const PositionsNewPageComponent = ({ users, fetchUsers }) => {
             'Department',
             'Position'
         ]} data={positionUsers} render={(item) => (<UserItem user={item} />)} />
-    </div>
+    </DataTable>
 
     return (
-        <div className="newdepartment">
+        <Page>
             <SideMenu />
             {showDelete ?
-                <div className="newdepartment_menu">
+                <MainContent>
                     <PageHeader header={position.name}>
                     </PageHeader>
                     <div className="newdepartment__body">
@@ -77,9 +76,9 @@ export const PositionsNewPageComponent = ({ users, fetchUsers }) => {
                             </div>
                         </Card>
                     </div>
-                </div>
+                </MainContent>
                 :
-                < div className="newdepartment_menu">
+                <MainContent>
                     <PageHeader header={id === "new" ? "New Position" : position.name}>
                         <Button onClick={() => setShowDelete(true)}><img src={saveIcon} alt="save" /> Delete position</Button>
                     </PageHeader>
@@ -97,15 +96,15 @@ export const PositionsNewPageComponent = ({ users, fetchUsers }) => {
                             />
                         }
                     </div>
-                </div>
+                </MainContent>
             }
             {
                 showNotifications &&
-                <div className="content-notification">
+                <NotificationShow>
                     <Notification type="success" > Successfully saved</Notification>
-                </div>
+                </NotificationShow>
             }
-        </div >
+        </Page >
     )
 }
 

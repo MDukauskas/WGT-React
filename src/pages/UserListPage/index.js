@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Button, SideMenu, Pagination, UserItem, LoadingBar, Table, PageHeader, DataTable, MainContent } from '../../components'
-import './index.scss'
+import { Button, SideMenu, Pagination, UserItem, LoadingBar, Table, PageHeader, DataTable, MainContent, Page } from '../../components'
 // import vector1black from '../../assets/vector1black.svg';
 import { Link } from 'react-router-dom'
 import { makeRequest } from '../../Services'
@@ -48,7 +47,7 @@ const UserListPageComponent = ({ users, setDepartments, setPositions, fetchUsers
     const currentUser = users.slice(indexOfFirstUser, indexOfLastUser)
 
     return (
-        <div className="userside">
+        <Page>
             <SideMenu />
             <MainContent>
                 <PageHeader header="Users">
@@ -72,7 +71,7 @@ const UserListPageComponent = ({ users, setDepartments, setPositions, fetchUsers
                 </DataTable>
                 < Pagination itemsPerPage={itemsPerPage} totalItems={users.length} onPageChange={page => setCurrentPage(page)} currentPage={currentPage} />
             </MainContent>
-        </div >
+        </Page >
     );
 }
 
