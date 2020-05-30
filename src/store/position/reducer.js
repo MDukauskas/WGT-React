@@ -1,5 +1,6 @@
 const initialState = {
     list: [],
+    loading: false
 }
 
 export const positionReducer = (state = initialState, action) => {

@@ -18,7 +18,6 @@ import { getUsersList, setDepartments, setPositions, getUsersLoading, fetchUsers
 //     </Page>
 // )
 
-// not show loading
 
 const UserListPageComponent = ({ users, setDepartments, setPositions, fetchUsers, isLoading }) => {
     const [currentPage, setCurrentPage] = useState(1);
@@ -26,21 +25,21 @@ const UserListPageComponent = ({ users, setDepartments, setPositions, fetchUsers
 
     useEffect(() => {
         fetchUsers()
-    }, [])
+    }, [fetchUsers])
 
     useEffect(() => {
         makeRequest('/position')
             .then(data => {
                 setPositions(data)
             })
-    }, [])
+    }, [setPositions])
 
     useEffect(() => {
         makeRequest('/department')
             .then(data => {
                 setDepartments(data)
             })
-    }, [])
+    }, [setDepartments])
 
     const indexOfLastUser = currentPage * itemsPerPage
     const indexOfFirstUser = indexOfLastUser - itemsPerPage
