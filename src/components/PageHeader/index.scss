@@ -1,0 +1,14 @@
+.content-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    
+    p {
+        font-size: 36px;
+        line-height: 55px;
+    }
+
+    a {
+        text-decoration: none;
+    }
+}

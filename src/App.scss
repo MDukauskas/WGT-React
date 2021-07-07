@@ -1,0 +1,49 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.direction {
+  display: flex;
+  flex-direction: row; 
+}
+
+.column {
+  width: 48%;
+}
+
+.App {
+  display: flex;
+  flex-direction: row;
+}
+
+.label {
+  color: #666666;
+  font-size: 16px;
+}
+
+table {
+  width: 100%;
+  tr {
+    border-bottom: 1px solid #E6E6E6;
+
+    th {
+      color: #1A1A1A;
+      font-weight: 600;
+      font-size: 16px;
+      line-height: 24px;
+    }
+    td {
+      color: #4D4D4D;
+      font-weight: normal;
+      font-size: 18px;
+      line-height: 27px;
+      height: 62px;
+    }
+  }
+}
+
+.list-icons {
+  color: #000000;
+}
